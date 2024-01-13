@@ -1,60 +1,61 @@
 
 body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f5f5f5;
-  margin: 0;
-  padding: 20px;
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
-.table-container {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  padding: 20px;
-  max-width: 600px;
-  margin: auto;
+.pricing-table {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 80%;
+    max-width: 1000px;
 }
 
-.table-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
+.pricing-table h2, .pricing-table h3 {
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+    background: #eee;
 }
 
-.table-header h2 {
-  margin: 0;
-  color: #6a1b9a;
+.pricing-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
 }
 
-.filter-tag {
-  background-color: #e1bee7;
-  color: #6a1b9a;
-  padding: 5px 10px;
-  border-radius: 15px;
-  font-size: 0.8em;
+.pricing-table th {
+    background: #5f27cd;
+    color: #fff;
+    padding: 10px;
+    text-align: left;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  text-align: left;
+.pricing-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
 }
 
-thead {
-  background-color: #e1bee7;
-  color: #6a1b9a;
+.pricing-table button {
+    background: #5f27cd;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background 0.3s ease;
 }
 
-th, td {
-  padding: 10px;
-  border-bottom: 1px solid #eee;
+.pricing-table button:hover {
+    background: #341f97;
 }
 
-th:first-child, td:first-child {
-  text-align: center;
-}
-
-input[type="checkbox"] {
-  margin: 0;
-}
+/* Responsive adjustments can be added as needed */

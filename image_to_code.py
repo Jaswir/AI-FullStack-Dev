@@ -15,7 +15,37 @@ RESET = "\033[0m"  # Reset color to default
 inference_params = dict(temperature=0.2, max_tokens=250)
 conversation = ""
 
-def chatbot(input, image_url):
+
+def chatbotImageFile(input, image_file):
+
+    #Temporarily saves the file to directory and read in as bytes
+    uploaded_file = image_file
+    file_path = os.path.join("tmpDirUploadedImage", uploaded_file.name)
+    with open(file_path, "wb") as f:
+        f.write(uploaded_file.getbuffer())
+
+
+    with open(file_path, "rb") as image_file:
+        image_bytes = image_file.read()
+
+    global conversation
+    conversation += "user: " + input + "\n\n"
+    model_prediction = Model(
+        "https://clarifai.com/openai/chat-completion/models/openai-gpt-4-vision"
+    ).predict(
+        inputs=[
+            Inputs.get_multimodal_input(
+                input_id="", image_bytes=image_bytes, raw_text=conversation
+            )
+        ],
+        inference_params=inference_params,
+    )
+    response = model_prediction.outputs[0].data.text.raw
+    conversation += "assistant: " + response + "\n\n"
+    return response
+
+
+def chatbotImageURL(input, image_url):
     global conversation
     conversation += "user: " + input + "\n\n"
     model_prediction = Model(
@@ -67,14 +97,22 @@ def makeWebsiteDirectory(html, css):
     )
 
 
-def buildWebsite(image_url):
+def buildWebsite(image, option):
+
     print("Building website...")
-    r1 = chatbot(image_url=image_url, input="What is inside of this image?")
-    r2 = chatbot(
-        image_url=image_url, input="write separate html and css code to make this"
-    )
 
+    if option == "Image URL":
+        r1 = chatbotImageURL(image_url=image, input="What is inside of this image?")
+        r2 = chatbotImageURL(
+            image_url=image, input="write separate html and css code to make this"
+        )
 
+    elif option == "Upload Image":
+        r1 = chatbotImageFile(image_file=image, input="What is inside of this image?")
+        r2 = chatbotImageFile(
+            image_file=image, input="write separate html and css code to make this"
+        )
+        
     rawHTMLCSS = r2
     print(RED + "rawHTMLCSS: " + RESET + rawHTMLCSS)
 

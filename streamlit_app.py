@@ -40,10 +40,10 @@ def main():
             os.environ["CLARIFAI_PAT"] = clarifai_pat
 
             if option == "Image URL":
-                image_to_code.buildWebsite(IMAGE_URL)
+                image_to_code.buildWebsite(IMAGE_URL, option = "Image URL")
             elif option == "Upload Image":
                 if IMAGE_FILE is not None:
-                    image_to_code.buildWebsite(IMAGE_FILE)
+                    image_to_code.buildWebsite(IMAGE_FILE, option = "Upload Image")
 
                 else:
                     st.warning("Please upload an image to continue:", icon="⚠️")
