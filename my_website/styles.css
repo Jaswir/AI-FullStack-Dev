@@ -1,61 +1,53 @@
 
 body {
     font-family: Arial, sans-serif;
-    background: #f4f4f4;
-    margin: 0;
     padding: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    background-color: #f4f4f4;
 }
 
-.pricing-table {
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    width: 80%;
-    max-width: 1000px;
+.container {
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.pricing-table h2, .pricing-table h3 {
+h1, h2 {
     text-align: center;
-    margin: 0;
-    padding: 20px;
-    background: #eee;
 }
 
-.pricing-table table {
+table {
     width: 100%;
     border-collapse: collapse;
-    margin: 0;
+    margin-top: 20px;
 }
 
-.pricing-table th {
-    background: #5f27cd;
-    color: #fff;
-    padding: 10px;
-    text-align: left;
+thead {
+    background-color: #6a1b9a;
+    color: white;
 }
 
-.pricing-table td {
-    padding: 10px;
+th, td {
     text-align: left;
+    padding: 10px;
     border-bottom: 1px solid #ddd;
 }
 
-.pricing-table button {
-    background: #5f27cd;
-    color: #fff;
+button {
+    background-color: #6a1b9a;
+    color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
     cursor: pointer;
-    transition: background 0.3s ease;
+    border-radius: 4px;
 }
 
-.pricing-table button:hover {
-    background: #341f97;
+button:hover {
+    background-color: #5c007a;
 }
-
-/* Responsive adjustments can be added as needed */

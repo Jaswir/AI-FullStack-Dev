@@ -1,6 +1,6 @@
 from clarifai.client.model import Model
 from clarifai.client.input import Inputs
-
+import zipfile
 import os
 
 # ANSI escape codes for text colors when using print()
@@ -17,13 +17,11 @@ conversation = ""
 
 
 def chatbotImageFile(input, image_file):
-
-    #Temporarily saves the file to directory and read in as bytes
+    # Temporarily saves the file to directory and read in as bytes
     uploaded_file = image_file
     file_path = os.path.join("tmpDirUploadedImage", uploaded_file.name)
     with open(file_path, "wb") as f:
         f.write(uploaded_file.getbuffer())
-
 
     with open(file_path, "rb") as image_file:
         image_bytes = image_file.read()
@@ -77,7 +75,7 @@ def extractCSSFromResponse(rawHTMLCSS):
     return css
 
 
-# Put Website in directory with html, css files
+# Put Website in directory with html, css files + readme
 def makeWebsiteDirectory(html, css):
     directory_name = "my_website"
     if not os.path.exists(directory_name):
@@ -85,6 +83,7 @@ def makeWebsiteDirectory(html, css):
 
     html_file_name = os.path.join(directory_name, "index.html")
     css_file_name = os.path.join(directory_name, "styles.css")
+    readme_file_name = os.path.join(directory_name, "README.md")
 
     with open(html_file_name, "w") as html_file:
         html_file.write(html)
@@ -92,13 +91,23 @@ def makeWebsiteDirectory(html, css):
     with open(css_file_name, "w") as css_file:
         css_file.write(css)
 
+    readme_content = """
+# How to Run the Application
+
+Follow these steps to run the application:
+
+1. Open the root directory in the terminal.
+2. Use the following command to run the website: `npx serve` """
+
+    with open(readme_file_name, 'w') as readme_file:
+        readme_file.write(readme_content)
+
     print(
         f"Directory '{directory_name}' created with 'index.html' and 'style.css' files."
     )
 
 
 def buildWebsite(image, option):
-
     print("Building website...")
 
     if option == "Image URL":
@@ -112,7 +121,7 @@ def buildWebsite(image, option):
         r2 = chatbotImageFile(
             image_file=image, input="write separate html and css code to make this"
         )
-        
+
     rawHTMLCSS = r2
     print(RED + "rawHTMLCSS: " + RESET + rawHTMLCSS)
 
@@ -125,6 +134,16 @@ def buildWebsite(image, option):
     print(css)
 
     makeWebsiteDirectory(html, css)
+
+    # Create a zip file containing the directory
+    zip_file_name = "my_website.zip"
+    with zipfile.ZipFile(zip_file_name, "w", zipfile.ZIP_DEFLATED) as zipf:
+        for root, _, files in os.walk("my_website"):
+            for file in files:
+                file_path = os.path.join(root, file)
+                zipf.write(file_path, os.path.relpath(file_path, "my_website"))
+
+    return zip_file_name
 
 
 # https://colorlib.com/wp/wp-content/uploads/sites/2/table-03.jpg
