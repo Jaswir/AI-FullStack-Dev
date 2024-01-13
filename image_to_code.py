@@ -3,7 +3,7 @@ from clarifai.client.input import Inputs
 
 import os
 
-os.environ["CLARIFAI_PAT"] = "f3ac13477d814ca79bf0a1d01739e251"
+# os.environ["CLARIFAI_PAT"] = "f3ac13477d814ca79bf0a1d01739e251"
 
 
 inference_params = dict(temperature=0.2, max_tokens=250)
