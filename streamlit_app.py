@@ -10,7 +10,7 @@ st.set_page_config(layout="wide")
 # userDataObject = auth.get_user_app_id_proto()
 
 
-st.title("AI Full Stack Dev")
+st.title("AI Website Builder")
 
 
 def main():
