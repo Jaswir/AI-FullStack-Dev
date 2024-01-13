@@ -5,7 +5,7 @@
 ######################################################################################################
 
 # Your PAT (Personal Access Token) can be found in the portal under Authentification
-PAT = 'f3ac13477d814ca79bf0a1d01739e251'
+PAT = ''
 # Specify the correct user_id/app_id pairings
 # Since you're making inferences outside your app's scope
 USER_ID = 'openai'
@@ -14,7 +14,7 @@ APP_ID = 'chat-completion'
 MODEL_ID = 'openai-gpt-4-vision'
 MODEL_VERSION_ID = '266df29bc09843e0aee9b7bf723c03c2'
 
-prompt = "What time of day is it?"
+prompt = "What is inside of this image?" 
 RAW_TEXT = prompt
 
 # To use a hosted text file, assign the url variable
@@ -55,7 +55,7 @@ post_model_outputs_response = stub.PostModelOutputs(
                         # raw=file_bytes
                     ),
                     image=resources_pb2.Image(
-                        url='https://samples.clarifai.com/metro-north.jpg'
+                        url='https://colorlib.com/wp/wp-content/uploads/sites/2/table-03.jpg'
                     )
                 )
             )
