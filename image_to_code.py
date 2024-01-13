@@ -33,11 +33,27 @@ def extractCSSFromResponse(rawHTMLCSS):
 
 image_url = "https://colorlib.com/wp/wp-content/uploads/sites/2/table-03.jpg"
 r1 = chatbot(image_url = image_url, input = "What is inside of this image?")
-r2  = chatbot(image_url = image_url, input = "write a html, css code to make this")
+r2  = chatbot(image_url = image_url, input = "write separate html and css code to make this")
 
 rawHTMLCSS = r2
-html = extractHTMLFromResponse(rawHTMLCSS)
-css = extractHTMLFromResponse(rawHTMLCSS)
 
+
+
+# ANSI escape codes for text colors
+RED = "\033[91m"
+GREEN = "\033[92m"
+YELLOW = "\033[93m"
+BLUE = "\033[94m"
+MAGENTA = "\033[95m"
+CYAN = "\033[96m"
+RESET = "\033[0m"  # Reset color to default
+
+print(RED + "rawHTMLCSS: "  + RESET + rawHTMLCSS )
+
+html = extractHTMLFromResponse(rawHTMLCSS)
+css = extractCSSFromResponse(rawHTMLCSS)
+
+print(MAGENTA  + "Html: "  + RESET)
 print(html)
+print(YELLOW  + "CSS: "  + RESET)
 print(css)
