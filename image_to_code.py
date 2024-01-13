@@ -9,6 +9,8 @@ os.environ["CLARIFAI_PAT"] = "f3ac13477d814ca79bf0a1d01739e251"
 inference_params = dict(temperature=0.2, max_tokens=250)
 
 conversation = ""
+
+
 def chatbot(input, image_url):
     global conversation
     conversation += "user: " + input + "\n\n"
@@ -41,28 +43,54 @@ def extractCSSFromResponse(rawHTMLCSS):
     return css
 
 
+# Put Website in directory with html, css files
+def makeWebsiteDirectory(html, css):
+    directory_name = "my_website"
+    if not os.path.exists(directory_name):
+        os.mkdir(directory_name)
 
-def buildWebsite():
-    image_url = "https://colorlib.com/wp/wp-content/uploads/sites/2/table-03.jpg"
+    html_file_name = os.path.join(directory_name, "index.html")
+    css_file_name = os.path.join(directory_name, "styles.css")
+
+    with open(html_file_name, "w") as html_file:
+        html_file.write(html)
+
+    with open(css_file_name, "w") as css_file:
+        css_file.write(css)
+
+    print(
+        f"Directory '{directory_name}' created with 'index.html' and 'style.css' files."
+    )
+
+
+def buildWebsite(image_url):
+    print("Building website...")
     r1 = chatbot(image_url=image_url, input="What is inside of this image?")
-    r2 = chatbot(image_url=image_url, input="write separate html and css code to make this")
+    r2 = chatbot(
+        image_url=image_url, input="write separate html and css code to make this"
+    )
+
+    # ANSI escape codes for text colors
+    RED = "\033[91m"
+    GREEN = "\033[92m"
+    YELLOW = "\033[93m"
+    BLUE = "\033[94m"
+    MAGENTA = "\033[95m"
+    CYAN = "\033[96m"
+    RESET = "\033[0m"  # Reset color to default
 
     rawHTMLCSS = r2
+    print(RED + "rawHTMLCSS: " + RESET + rawHTMLCSS)
+
     html = extractHTMLFromResponse(rawHTMLCSS)
     css = extractCSSFromResponse(rawHTMLCSS)
 
-# Put Website in directory with html, css files
-directory_name = "my_website"
-if not os.path.exists(directory_name):
-    os.mkdir(directory_name)
+    print(MAGENTA + "Html: " + RESET)
+    print(html)
+    print(YELLOW + "CSS: " + RESET)
+    print(css)
 
-html_file_name = os.path.join(directory_name, "index.html")
-css_file_name = os.path.join(directory_name, "styles.css")
+    makeWebsiteDirectory(html, css)
 
-with open(html_file_name, "w") as html_file:
-    html_file.write(html)
 
-with open(css_file_name, "w") as css_file:
-    css_file.write(css)
-
-print(f"Directory '{directory_name}' created with 'index.html' and 'style.css' files.")
+# https://colorlib.com/wp/wp-content/uploads/sites/2/table-03.jpg

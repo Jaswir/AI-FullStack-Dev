@@ -1,31 +1,35 @@
+import os
 import streamlit as st
-
 import image_to_code
 
-# Define a Streamlit app
+st.set_page_config(layout="wide")
+
+# This must be within the display() function.
+# auth = ClarifaiAuthHelper.from_streamlit(st)
+# stub = create_stub(auth)
+# userDataObject = auth.get_user_app_id_proto()
+
+
+st.title("AI Full Stack Dev")
+
+
 def main():
-    st.title("Run Python Script with Button")
+    IMAGE_URL = st.text_input("Enter the image URL to get started!")
 
-    # Add a button to run the script
-    if st.button("Build Website"):
-        # Execute your Python script when the button is pressed
-        run_script()
+    # Clarifai Credentials
+    with st.sidebar:
+        st.subheader("Add your Clarifai PAT")
+        clarifai_pat = st.text_input("Clarifai PAT:", type="password")
 
-# Define the function to run your Python script
-def run_script():
-    try:
-        # Replace 'your_script.py' with the actual filename of your Python script
-        script_filename = 'image_to_code.py'
+    if not clarifai_pat:
+        st.warning("Please enter your PAT to continue:", icon="⚠️")
+    else:
+        os.environ["CLARIFAI_API_KEY"] = clarifai_pat
 
-        # Run the script using subprocess
-        result = subprocess.run(['python', script_filename], capture_output=True, text=True)
+        # Add a button to run the script
+        if st.button("Build Website"):
+            image_to_code.buildWebsite(IMAGE_URL)
 
-        # Display the script output in the Streamlit app
-        st.code(result.stdout, language='python')
-
-    except Exception as e:
-        st.error(f"An error occurred: {e}")
 
 if __name__ == "__main__":
     main()
-

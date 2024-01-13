@@ -1,65 +1,53 @@
 
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     margin: 0;
     padding: 20px;
 }
 
 .pricing-table {
-    max-width: 600px;
-    margin: 0 auto;
     background-color: #fff;
     padding: 20px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 0 auto;
 }
 
-.pricing-table h2,
-.pricing-table .subtitle {
+.pricing-table h2, .pricing-table h3 {
     text-align: center;
-    margin: 0;
     color: #333;
 }
 
-.pricing-table .subtitle {
-    margin-bottom: 20px;
-}
-
-.table {
+table {
     width: 100%;
     border-collapse: collapse;
+    margin-top: 20px;
 }
 
-.table-header,
-.table-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.table-header {
-    background-color: #5e5ebf;
+th {
+    background-color: #5f27cd;
     color: #fff;
-    padding: 10px 0;
+    padding: 10px;
+    text-align: left;
 }
 
-.header-item,
-.row-item {
-    flex: 1;
-    text-align: center;
+td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
 }
 
-.register-btn {
-    padding: 5px 20px;
-    background-color: #5e5ebf;
+button {
+    background-color: #5f27cd;
+    color: #fff;
     border: none;
-    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s;
 }
 
-.register-btn:hover {
-    background-color: #4a4a9d;
+button:hover {
+    background-color: #4c2196;
 }
-
-/* Add additional styling and responsive design as needed */
