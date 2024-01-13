@@ -19,14 +19,14 @@ def chatbot(input, image_url):
   
     return response
 
+# Extracts the part between ```html and ``` from raw chat gpt response
 def extractHTMLFromResponse(rawHTMLCSS):
-    # Extracts the part between ```html and ```
     html_without_bullshit_above = rawHTMLCSS.split("```html")[1]
     html = html_without_bullshit_above.split("```")[0]
     return html
 
+# Extracts the part between ```css and ``` from raw chat gpt response
 def extractCSSFromResponse(rawHTMLCSS):
-    # Extracts the part between ```css and ```
     css_without_bullshit_above = rawHTMLCSS.split("```css")[1]
     css = css_without_bullshit_above.split("```")[0]
     return css
@@ -36,24 +36,40 @@ r1 = chatbot(image_url = image_url, input = "What is inside of this image?")
 r2  = chatbot(image_url = image_url, input = "write separate html and css code to make this")
 
 rawHTMLCSS = r2
-
-
-
-# ANSI escape codes for text colors
-RED = "\033[91m"
-GREEN = "\033[92m"
-YELLOW = "\033[93m"
-BLUE = "\033[94m"
-MAGENTA = "\033[95m"
-CYAN = "\033[96m"
-RESET = "\033[0m"  # Reset color to default
-
-print(RED + "rawHTMLCSS: "  + RESET + rawHTMLCSS )
-
 html = extractHTMLFromResponse(rawHTMLCSS)
 css = extractCSSFromResponse(rawHTMLCSS)
 
-print(MAGENTA  + "Html: "  + RESET)
-print(html)
-print(YELLOW  + "CSS: "  + RESET)
-print(css)
+# ANSI escape codes for text colors
+# RED = "\033[91m"
+# GREEN = "\033[92m"
+# YELLOW = "\033[93m"
+# BLUE = "\033[94m"
+# MAGENTA = "\033[95m"
+# CYAN = "\033[96m"
+# RESET = "\033[0m"  # Reset color to default
+
+# print(RED + "rawHTMLCSS: "  + RESET + rawHTMLCSS )
+
+
+
+# print(MAGENTA  + "Html: "  + RESET)
+# print(html)
+# print(YELLOW  + "CSS: "  + RESET)
+# print(css)
+
+
+# Put Website in directory with html, css files
+directory_name = "my_website"
+if not os.path.exists(directory_name):
+    os.mkdir(directory_name)
+
+html_file_name = os.path.join(directory_name, "index.html")
+css_file_name = os.path.join(directory_name, "styles.css")
+
+with open(html_file_name, "w") as html_file:
+    html_file.write(html)
+
+with open(css_file_name, "w") as css_file:
+    css_file.write(css)
+
+print(f"Directory '{directory_name}' created with 'index.html' and 'style.css' files.")
