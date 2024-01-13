@@ -3,13 +3,17 @@ from clarifai.client.input import Inputs
 
 import os
 
-# os.environ["CLARIFAI_PAT"] = "f3ac13477d814ca79bf0a1d01739e251"
-
+# ANSI escape codes for text colors when using print()
+RED = "\033[91m"
+GREEN = "\033[92m"
+YELLOW = "\033[93m"
+BLUE = "\033[94m"
+MAGENTA = "\033[95m"
+CYAN = "\033[96m"
+RESET = "\033[0m"  # Reset color to default
 
 inference_params = dict(temperature=0.2, max_tokens=250)
-
 conversation = ""
-
 
 def chatbot(input, image_url):
     global conversation
@@ -70,14 +74,6 @@ def buildWebsite(image_url):
         image_url=image_url, input="write separate html and css code to make this"
     )
 
-    # ANSI escape codes for text colors
-    RED = "\033[91m"
-    GREEN = "\033[92m"
-    YELLOW = "\033[93m"
-    BLUE = "\033[94m"
-    MAGENTA = "\033[95m"
-    CYAN = "\033[96m"
-    RESET = "\033[0m"  # Reset color to default
 
     rawHTMLCSS = r2
     print(RED + "rawHTMLCSS: " + RESET + rawHTMLCSS)

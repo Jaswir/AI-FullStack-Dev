@@ -14,7 +14,7 @@ st.title("AI Full Stack Dev")
 
 
 def main():
-    IMAGE_URL = st.text_input("Enter the image URL to get started!")
+    IMAGE_URL = st.text_input("Enter the image URL to get started!", "https://colorlib.com/wp/wp-content/uploads/sites/2/table-03.jpg")
 
     # Clarifai Credentials
     with st.sidebar:
@@ -24,7 +24,7 @@ def main():
     if not clarifai_pat:
         st.warning("Please enter your PAT to continue:", icon="⚠️")
     else:
-        os.environ["CLARIFAI_API_KEY"] = clarifai_pat
+        os.environ["CLARIFAI_PAT"] = clarifai_pat
 
         # Add a button to run the script
         if st.button("Build Website"):
