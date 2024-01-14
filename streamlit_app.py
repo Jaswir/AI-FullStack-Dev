@@ -1,6 +1,8 @@
 import os
 import streamlit as st
 import image_to_code
+import script_to_image
+from script_to_image import process_script
 
 
 if "has_download" not in st.session_state:
@@ -22,7 +24,7 @@ def main():
         st.subheader("Add your Clarifai PAT")
         clarifai_pat = st.text_input("Clarifai PAT:", type="password")
 
-    option = st.radio("Select an option:", ("Image URL", "Upload Image"))
+    option = st.radio("Select an option:", ("Image URL", "Upload Image", "Write Script"))
 
     if option == "Image URL":
         IMAGE_URL = st.text_input(
@@ -32,6 +34,32 @@ def main():
 
     elif option == "Upload Image":
         IMAGE_FILE = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
+
+    elif option == "Write Script":
+        script = st.text_area("Write your script here:", height=200)
+
+
+    if st.button("Generate Image"):
+        if not clarifai_pat:
+            st.warning("Please enter your PAT to continue:", icon="⚠️")
+        else:
+            os.environ["CLARIFAI_PAT"] = clarifai_pat
+            
+            if option == "Write Script":
+                output_base64 = script_to_image.process_script(script)
+                with open('image.png', 'wb') as f:
+                    f.write(output_base64)
+                    
+                st.success("Image generated successfully!")
+                st.session_state.has_download = True
+                if st.session_state.has_download:
+                    st.download_button(
+                        label="Download Image",
+                        data=open("image.png","rb").read(),
+                        key="download_image",
+                        file_name="image.png",
+                        )
+             
 
     # Add a button to run the script
     if st.button("Build Website"):
@@ -50,6 +78,8 @@ def main():
                     st.session_state.has_download = True
                 else:
                     st.warning("Please upload an image to continue:", icon="⚠️")
+
+                    
 
     # Provide a download link for the zip file
     if st.session_state.has_download:
