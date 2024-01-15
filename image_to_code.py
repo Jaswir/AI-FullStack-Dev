@@ -108,70 +108,36 @@ Follow these steps to run the application:
     )
 
 
-def buildWebsite(image, option):
+def buildWebsite(image, option, mode="Separate"):
     print("Building website...")
 
     if option == "Image URL":
         r1 = chatbotImageURL(
             image_url=image, input="What is inside of this image?")
         r2 = chatbotImageURL(
-            image_url=image, input="write separate html and css code to make this"
+            image_url=image, input="write separate html and css code to make this" if mode == "Seperate" else "Generate code (HTML FULL CODE, CSS FULL CODE) for a website that looks EXACTLY PRECIESLY like the one in the image provided, make sure the code has no errors, make sure the code is EXACTLY identical, make sure the code is just like the image without any differences, repetitivity IS ACCEPTABLE, Make HTML, CSS code, CSS STRAIGHT in <style > tag in the < head > , MAKE SURE CODE IS CORRECT WITHOUT ERRORS, REPLY WITH ONLY THE CODE, MAKE SURE CSS INCLUDES HOVER EFFECTS, LEAVE IMAGES' SRC ATTRIBUTES (if there are any images) AS PLACEHOLDERS, DON'T LEAVE ANY OTHER PLACEHOLDERS, INCLUDE ALL THE TEXT AND DON'T LEAVE OUT ANYTHING, MAKE AN EXACT VERSION OF THE WEBSITE IN THE IMAGE PROVIDED. MAKE SURE NONE OF THE  CODES (HTML OR CSS) IS MISSING, MAKE SURE TO PROVIDE CSS CODE, MAKE SURE THERE IS CSS CODE FOR EVERY SINGLE PART AND ELEMENT OF THE WEBSITE, MAKE SURE THERE IS CSS CODE FOR EVERY SINGLE PART AND ELEMENT OF THE WEBSITE!! NEVER LEAVE ANY ELEMENT WITHOUT STYLE!!, MAKE SURE THE WEBSITE DESIGN IS PERFECTLY IDENTICAL WITH THE IMAGE PROVIDED, MAKE SURE THE CODE IS FULL, NO MISSING PARTS ARE ACCEPTABLE, INCLUDE CSS FOR NAVIGATION BAR ON TOP OF THE WEBSITE IF THERE'S ONE IN THE IMAGE"
         )
 
     elif option == "Upload Image":
         r1 = chatbotImageFile(
             image_file=image, input="What is inside of this image?")
         r2 = chatbotImageFile(
-            image_file=image, input="write separate html and css code to make this"
+            image_file=image, input="write separate html and css code to make this" if mode == "Seperate" else "Generate code (HTML FULL CODE, CSS FULL CODE) for a website that looks EXACTLY PRECIESLY like the one in the image provided, make sure the code has no errors, make sure the code is EXACTLY identical, make sure the code is just like the image without any differences, repetitivity IS ACCEPTABLE, Make HTML, CSS code, CSS STRAIGHT in <style > tag in the < head > , MAKE SURE CODE IS CORRECT WITHOUT ERRORS, REPLY WITH ONLY THE CODE, MAKE SURE CSS INCLUDES HOVER EFFECTS, LEAVE IMAGES' SRC ATTRIBUTES (if there are any images) AS PLACEHOLDERS, DON'T LEAVE ANY OTHER PLACEHOLDERS, INCLUDE ALL THE TEXT AND DON'T LEAVE OUT ANYTHING, MAKE AN EXACT VERSION OF THE WEBSITE IN THE IMAGE PROVIDED. MAKE SURE NONE OF THE  CODES (HTML OR CSS) IS MISSING, MAKE SURE TO PROVIDE CSS CODE, MAKE SURE THERE IS CSS CODE FOR EVERY SINGLE PART AND ELEMENT OF THE WEBSITE, MAKE SURE THERE IS CSS CODE FOR EVERY SINGLE PART AND ELEMENT OF THE WEBSITE!! NEVER LEAVE ANY ELEMENT WITHOUT STYLE!!, MAKE SURE THE WEBSITE DESIGN IS PERFECTLY IDENTICAL WITH THE IMAGE PROVIDED, MAKE SURE THE CODE IS FULL, NO MISSING PARTS ARE ACCEPTABLE, INCLUDE CSS FOR NAVIGATION BAR ON TOP OF THE WEBSITE IF THERE'S ONE IN THE IMAGE"
         )
 
     rawHTMLCSS = r2
-    print(RED + "rawHTMLCSS: " + RESET + rawHTMLCSS)
+    print(RED + "raw: " + RESET + rawHTMLCSS)
 
-    html = extractHTMLFromResponse(rawHTMLCSS)
-    css = extractCSSFromResponse(rawHTMLCSS)
-
-    print(MAGENTA + "Html: " + RESET)
-    print(html)
-    print(YELLOW + "CSS: " + RESET)
-    print(css)
-
-    makeWebsiteDirectory(html, css)
-
-    # Create a zip file containing the directory
-    zip_file_name = "my_website.zip"
-    with zipfile.ZipFile(zip_file_name, "w", zipfile.ZIP_DEFLATED) as zipf:
-        for root, _, files in os.walk("my_website"):
-            for file in files:
-                file_path = os.path.join(root, file)
-                zipf.write(file_path, os.path.relpath(file_path, "my_website"))
-
-    return zip_file_name
-
-
-def buildWebsiteSingleFile(image, option):
-    print("Building website...")
-
-    if option == "Image URL":
-        r1 = chatbotImageURL(
-            image_url=image, input="What is inside of this image?")
-        r2 = chatbotImageURL(
-            image_url=image, input="Generate code (HTML FULL CODE,CSS FULL CODE) for a website that looks EXACTLY PRECIESLY like the one in the image provided, make sure the code has no errors, make sure the code is EXACTLY identical, make sure the code is just like the image without any differences, repetitivity IS ACCEPTABLE, Make HTML,CSS code, CSS STRAIGHT in <style> tag in the <head>, MAKE SURE CODE IS CORRECT WITHOUT ERRORS, REPLY WITH ONLY THE CODE, MAKE SURE CSS INCLUDES HOVER EFFECTS, LEAVE IMAGES' SRC ATTRIBUTES (if there are any images) AS PLACEHOLDERS, DON'T LEAVE ANY OTHER PLACEHOLDERS, INCLUDE ALL THE TEXT AND DON'T LEAVE OUT ANYTHING, MAKE AN EXACT VERSION OF THE WEBSITE IN THE IMAGE PROVIDED. MAKE SURE NONE OF THE  CODES (HTML OR CSS) IS MISSING, MAKE SURE TO PROVIDE CSS CODE, MAKE SURE THERE IS CSS CODE FOR EVERY SINGLE PART AND ELEMENT OF THE WEBSITE, MAKE SURE THERE IS CSS CODE FOR EVERY SINGLE PART AND ELEMENT OF THE WEBSITE!! NEVER LEAVE ANY ELEMENT WITHOUT STYLE!!, MAKE SURE THE WEBSITE DESIGN IS PERFECTLY IDENTICAL WITH THE IMAGE PROVIDED, MAKE SURE THE CODE IS FULL, NO MISSING PARTS ARE ACCEPTABLE, INCLUDE CSS FOR NAVIGATION BAR ON TOP OF THE WEBSITE IF THERE'S ONE IN THE IMAGE"
-        )
-
-    elif option == "Upload Image":
-        r1 = chatbotImageFile(
-            image_file=image, input="What is inside of this image?")
-        r2 = chatbotImageFile(
-            image_file=image, input="Generate code (HTML FULL CODE,CSS FULL CODE) for a website that looks EXACTLY PRECIESLY like the one in the image provided, make sure the code has no errors, make sure the code is EXACTLY identical, make sure the code is just like the image without any differences, repetitivity IS ACCEPTABLE, Make HTML,CSS code, CSS STRAIGHT in <style> tag in the <head>, MAKE SURE CODE IS CORRECT WITHOUT ERRORS, REPLY WITH ONLY THE CODE, MAKE SURE CSS INCLUDES HOVER EFFECTS, LEAVE IMAGES' SRC ATTRIBUTES (if there are any images) AS PLACEHOLDERS, DON'T LEAVE ANY OTHER PLACEHOLDERS, INCLUDE ALL THE TEXT AND DON'T LEAVE OUT ANYTHING, MAKE AN EXACT VERSION OF THE WEBSITE IN THE IMAGE PROVIDED. MAKE SURE NONE OF THE  CODES (HTML OR CSS) IS MISSING, MAKE SURE TO PROVIDE CSS CODE, MAKE SURE THERE IS CSS CODE FOR EVERY SINGLE PART AND ELEMENT OF THE WEBSITE, MAKE SURE THERE IS CSS CODE FOR EVERY SINGLE PART AND ELEMENT OF THE WEBSITE!! NEVER LEAVE ANY ELEMENT WITHOUT STYLE!!, MAKE SURE THE WEBSITE DESIGN IS PERFECTLY IDENTICAL WITH THE IMAGE PROVIDED, MAKE SURE THE CODE IS FULL, NO MISSING PARTS ARE ACCEPTABLE, INCLUDE CSS FOR NAVIGATION BAR ON TOP OF THE WEBSITE IF THERE'S ONE IN THE IMAGE"
-        )
-
-    html = r2
+    html = extractHTMLFromResponse(rawHTMLCSS) if mode == "Seperate" else r2
+    css = extractCSSFromResponse(rawHTMLCSS) if mode == "Seperate" else None
 
     print(MAGENTA + "index.html: " + RESET)
     print(html)
+    if mode == "Seperate":
+        print(YELLOW + "CSS: " + RESET)
+        print(css)
 
-    makeWebsiteDirectory(html)
+    makeWebsiteDirectory(html, css if mode == "Seperate" else False)
 
     # Create a zip file containing the directory
     zip_file_name = "my_website.zip"
