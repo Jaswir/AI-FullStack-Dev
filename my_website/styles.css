@@ -1,20 +1,23 @@
 
 body {
     font-family: Arial, sans-serif;
-    padding: 20px;
     background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
 }
 
-.container {
+.table-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     max-width: 800px;
     margin: auto;
-    background: white;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-h1, h2 {
+h2, h4 {
     text-align: center;
+    color: #333;
 }
 
 table {
@@ -25,7 +28,7 @@ table {
 
 thead {
     background-color: #6a1b9a;
-    color: white;
+    color: #fff;
 }
 
 th, td {
@@ -34,20 +37,28 @@ th, td {
     border-bottom: 1px solid #ddd;
 }
 
+th {
+    text-align: center;
+}
+
 button {
     background-color: #6a1b9a;
-    color: white;
+    color: #fff;
     border: none;
-    padding: 5px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
+    padding: 8px 16px;
     border-radius: 4px;
+    cursor: pointer;
+    text-transform: uppercase;
 }
 
 button:hover {
-    background-color: #5c007a;
+    background-color: #5c1399;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tbody td {
+    text-align: center;
 }
