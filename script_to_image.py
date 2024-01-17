@@ -10,8 +10,4 @@ def process_script(script):
     output_base64 = model_prediction.outputs[0].data.image.base64
 
     print("Script processing is completed !")
-<<<<<<< HEAD
     return output_base64
-=======
-    return output_base64
->>>>>>> feff6a4c0e8958dd12d7cdf62a8ab7e86e70847e
