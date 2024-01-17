@@ -99,13 +99,7 @@ def main():
                     
     # Provide a download link for the zip file
     if st.session_state.has_download:
-        st.subheader("Click the button below to download the website as a zip file:")
-        st.download_button(
-            label="Download Website",
-            data=open("my_website.zip", "rb").read(),
-            key="download_directory",
-            file_name="my_website.zip",
-        )
+     
 
         file_path_html = "./my_website/index.html"
         file_path_css = "./my_website/styles.css"
@@ -123,6 +117,14 @@ def main():
             html_plus_css,
             width=window_width,
             height=window_width / 16 * 9,
+        )
+
+        st.subheader("Click the button below to get the code")
+        st.download_button(
+            label="Get Code",
+            data=open("my_website.zip", "rb").read(),
+            key="download_directory",
+            file_name="my_website.zip",
         )
 
 

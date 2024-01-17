@@ -1,7 +1,7 @@
-from clarifai.client.model import Model
-from clarifai.client.input import Inputs
 import zipfile
 import os
+import gpt_4_vision
+import gemini_pro_vision
 
 # ANSI escape codes for text colors when using print()
 RED = "\033[91m"
@@ -12,56 +12,11 @@ MAGENTA = "\033[95m"
 CYAN = "\033[96m"
 RESET = "\033[0m"  # Reset color to default
 
-inference_params = dict(temperature=0.2, max_tokens=250)
-conversation = ""
-
-def chatbotImageFromFilePath(input, file_path):
-    with open(file_path, "rb") as image_file:
-        image_bytes = image_file.read()
-
-    global conversation
-    conversation += "user: " + input + "\n\n"
-    model_prediction = Model(
-        "https://clarifai.com/openai/chat-completion/models/openai-gpt-4-vision"
-    ).predict(
-        inputs=[
-            Inputs.get_multimodal_input(
-                input_id="", image_bytes=image_bytes, raw_text=conversation
-            )
-        ],
-        inference_params=inference_params,
-    )
-    response = model_prediction.outputs[0].data.text.raw
-    conversation += "assistant: " + response + "\n\n"
-    return response
-
-def chatbotImageFile(input, image_file):
-    # Temporarily saves the file to directory and read in as bytes
-    uploaded_file = image_file
-    file_path = os.path.join("tmpDirUploadedImage", uploaded_file.name)
-    with open(file_path, "wb") as f:
-        f.write(uploaded_file.getbuffer())
-
-    chatbotImageFromFilePath(input, file_path)
-
-
-def chatbotImageURL(input, image_url):
-    global conversation
-    conversation += "user: " + input + "\n\n"
-    model_prediction = Model(
-        "https://clarifai.com/openai/chat-completion/models/openai-gpt-4-vision"
-    ).predict(
-        inputs=[
-            Inputs.get_multimodal_input(
-                input_id="", image_url=image_url, raw_text=conversation
-            )
-        ],
-        inference_params=inference_params,
-    )
-    response = model_prediction.outputs[0].data.text.raw
-    conversation += "assistant: " + response + "\n\n"
-    return response
-
+prompt = """Generate code (HTML FULL CODE, CSS FULL CODE) 
+for a website that looks EXACTLY like the one in the image provided, 
+, make sure the stylesheet is called 
+styles.css, Make HTML, CSS code, and make sure to put the code inside 
+```html and ```css tags MAKE SURE CSS INCLUDES HOVER EFFECTS, LEAVE IMAGES' SRC ATTRIBUTES (if there are any images) AS PLACEHOLDERS, DON'T LEAVE ANY OTHER PLACEHOLDERS, INCLUDE ALL THE TEXT AND DON'T LEAVE OUT ANYTHING, MAKE AN EXACT VERSION OF THE WEBSITE IN THE IMAGE PROVIDED. MAKE SURE NONE OF THE  CODES (HTML OR CSS) IS MISSING, MAKE SURE TO PROVIDE CSS CODE, MAKE SURE THERE IS CSS CODE FOR EVERY SINGLE PART AND ELEMENT OF THE WEBSITE, NEVER LEAVE ANY ELEMENT WITHOUT STYLE!!, MAKE SURE THE WEBSITE DESIGN IS PERFECTLY IDENTICAL WITH THE IMAGE PROVIDED, MAKE SURE THE CODE IS FULL,, INCLUDE CSS FOR NAVIGATION BAR ON TOP OF THE WEBSITE IF THERE'S ONE IN THE IMAGE"""
 
 # Extracts the part between ```html and ``` from raw chat gpt response
 def extractHTMLFromResponse(rawHTMLCSS):
@@ -123,20 +78,17 @@ def buildWebsite(image, option):
     print("Option: " + option)
 
     if option == "Image URL":
-        r1 = chatbotImageURL(image_url=image, input="What is inside of this image?")
-        r2 = chatbotImageURL(
-            image_url=image, input="write separate html and css code to make this"
-        )
+        r2 = gemini_pro_vision.getGeminiProResponse(image_url=image, input=prompt)
 
     elif option == "Upload Image":
-        r1 = chatbotImageFile(image_file=image, input="What is inside of this image?")
-        r2 = chatbotImageFile(
+        r1 = gpt_4_vision.chatbotImageFile(image_file=image, input="What is inside of this image?")
+        r2 = gpt_4_vision.chatbotImageFile(
             image_file=image, input="write separate html and css code to make this"
         )
 
     elif option == "Write Script":
-        r1 = chatbotImageFromFilePath(file_path=image, input="What is inside of this image?")
-        r2 = chatbotImageFromFilePath(
+        r1 = gpt_4_vision.chatbotImageFromFilePath(file_path=image, input="What is inside of this image?")
+        r2 = gpt_4_vision.chatbotImageFromFilePath(
             file_path=image, input="write separate html and css code to make this"
         )
 

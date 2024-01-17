@@ -14,18 +14,18 @@ styles.css, Make HTML, CSS code, and make sure to put the code inside
 ```html and ```css tags MAKE SURE CSS INCLUDES HOVER EFFECTS, LEAVE IMAGES' SRC ATTRIBUTES (if there are any images) AS PLACEHOLDERS, DON'T LEAVE ANY OTHER PLACEHOLDERS, INCLUDE ALL THE TEXT AND DON'T LEAVE OUT ANYTHING, MAKE AN EXACT VERSION OF THE WEBSITE IN THE IMAGE PROVIDED. MAKE SURE NONE OF THE  CODES (HTML OR CSS) IS MISSING, MAKE SURE TO PROVIDE CSS CODE, MAKE SURE THERE IS CSS CODE FOR EVERY SINGLE PART AND ELEMENT OF THE WEBSITE, NEVER LEAVE ANY ELEMENT WITHOUT STYLE!!, MAKE SURE THE WEBSITE DESIGN IS PERFECTLY IDENTICAL WITH THE IMAGE PROVIDED, MAKE SURE THE CODE IS FULL,, INCLUDE CSS FOR NAVIGATION BAR ON TOP OF THE WEBSITE IF THERE'S ONE IN THE IMAGE"""
 
 
-def getGeminiProResponse(text):
+def getGeminiProResponse(image_url, input):
     genai.configure(api_key=GOOGLE_API_KEY)
 
     message = HumanMessage(
         content=[
             {
                 "type": "text",
-                "text": text,
+                "text": input,
             },  # You can optionally provide text parts
             {
                 "type": "image_url",
-                "image_url": "https://storage.googleapis.com/bucket-j20/graphs.png",
+                "image_url": image_url,
             },
         ]
     )
