@@ -18,11 +18,17 @@ def main():
 
     # Javascript variables
     window_width = st_javascript("window.innerWidth")
+    hostname = st_javascript("window.location.hostname", )
+
+    # Set Clarify PAT from secrets
+    if hostname is not "localhost":
+        clarifai_pat = st.secrets["CLARIFAI_PAT"] 
+  
 
     # Clarifai Credentials 
-    with st.sidebar:
-        st.subheader("Add your Clarifai PAT")
-        clarifai_pat = st.text_input("Clarifai PAT:", type="password")
+    # with st.sidebar:
+    #     st.subheader("Add your Clarifai PAT")
+    #     clarifai_pat = st.text_input("Clarifai PAT:", type="password")
 
 
     option = st.radio("Select an option:", ("Image URL", "Upload Image", "Write Script"))
