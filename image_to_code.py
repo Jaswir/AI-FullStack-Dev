@@ -15,14 +15,7 @@ RESET = "\033[0m"  # Reset color to default
 inference_params = dict(temperature=0.2, max_tokens=250)
 conversation = ""
 
-
-def chatbotImageFile(input, image_file):
-    # Temporarily saves the file to directory and read in as bytes
-    uploaded_file = image_file
-    file_path = os.path.join("tmpDirUploadedImage", uploaded_file.name)
-    with open(file_path, "wb") as f:
-        f.write(uploaded_file.getbuffer())
-
+def chatbotImageFromFilePath(input, file_path):
     with open(file_path, "rb") as image_file:
         image_bytes = image_file.read()
 
@@ -41,6 +34,15 @@ def chatbotImageFile(input, image_file):
     response = model_prediction.outputs[0].data.text.raw
     conversation += "assistant: " + response + "\n\n"
     return response
+
+def chatbotImageFile(input, image_file):
+    # Temporarily saves the file to directory and read in as bytes
+    uploaded_file = image_file
+    file_path = os.path.join("tmpDirUploadedImage", uploaded_file.name)
+    with open(file_path, "wb") as f:
+        f.write(uploaded_file.getbuffer())
+
+    chatbotImageFromFilePath(input, file_path)
 
 
 def chatbotImageURL(input, image_url):
@@ -109,6 +111,7 @@ Follow these steps to run the application:
 
 def buildWebsite(image, option):
     print("Building website...")
+    print("Option: " + option)
 
     if option == "Image URL":
         r1 = chatbotImageURL(image_url=image, input="What is inside of this image?")
@@ -120,6 +123,12 @@ def buildWebsite(image, option):
         r1 = chatbotImageFile(image_file=image, input="What is inside of this image?")
         r2 = chatbotImageFile(
             image_file=image, input="write separate html and css code to make this"
+        )
+
+    elif option == "Write Script":
+        r1 = chatbotImageFromFilePath(file_path=image, input="What is inside of this image?")
+        r2 = chatbotImageFromFilePath(
+            file_path=image, input="write separate html and css code to make this"
         )
 
     rawHTMLCSS = r2
