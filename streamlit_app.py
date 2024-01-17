@@ -19,11 +19,10 @@ def main():
     # Javascript variables
     window_width = st_javascript("window.innerWidth")
 
-    # Clarifai Credentials
-    if not st.session_state.has_download:
-        with st.sidebar:
-            st.subheader("Add your Clarifai PAT")
-            clarifai_pat = st.text_input("Clarifai PAT:", type="password")
+    # Clarifai Credentials 
+    with st.sidebar:
+        st.subheader("Add your Clarifai PAT")
+        clarifai_pat = st.text_input("Clarifai PAT:", type="password")
 
 
     option = st.radio("Select an option:", ("Image URL", "Upload Image", "Write Script"))
