@@ -76,6 +76,15 @@ def extractCSSFromResponse(rawHTMLCSS):
     css = css_without_bullshit_above.split("```")[0]
     return css
 
+def addCSSToHtml(html):
+    with open("./my_website/styles.css", "r") as file:
+        css_string = "<style>" + file.read() + "</style>"
+
+    html_plus_css = html.replace(
+        '<link rel="stylesheet" href="styles.css">', css_string
+    )
+
+    return html_plus_css
 
 # Put Website in directory with html, css files + readme
 def makeWebsiteDirectory(html, css):

@@ -18,7 +18,7 @@ def main():
 
     # Javascript variables
     window_width = st_javascript("window.innerWidth")
-    hostname = st_javascript("window.location.hostname", )
+    hostname = st_javascript("window.location.hostname")
 
     # Set Clarify PAT from secrets
     if hostname is not "localhost":
