@@ -1,6 +1,7 @@
 import os
 import streamlit as st
 from streamlit_javascript import st_javascript
+from PIL import Image
 
 import image_to_code
 import script_to_image
@@ -21,8 +22,7 @@ def main():
     hostname = st_javascript("window.location.hostname")
 
     # Set Clarify PAT from secrets
-    if hostname is not "localhost":
-        clarifai_pat = st.secrets["CLARIFAI_PAT"] 
+    clarifai_pat = st.secrets["CLARIFAI_PAT"] 
   
 
     # Clarifai Credentials 
@@ -38,10 +38,14 @@ def main():
             "Enter the image URL to get started!",
             "https://colorlib.com/wp/wp-content/uploads/sites/2/table-03.jpg",
         )
+        if IMAGE_URL is not None:
+            st.image(image_to_code.get_image_from_url(IMAGE_URL), width = 700)
 
     elif option == "Upload Image":
         IMAGE_FILE = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
-
+        if IMAGE_FILE is not None:
+            st.image(IMAGE_FILE, width = 700)
+        
     elif option == "Write Script":
         script = st.text_area("Write your script here:", height=200)
         file_path = './generated_image.png'
@@ -83,7 +87,7 @@ def main():
                 st.session_state.has_download = True
                 
             elif option == "Upload Image":
-                if IMAGE_FILE is not None:
+                if IMAGE_FILE is not None:                
                     image_to_code.buildWebsite(IMAGE_FILE, option="Upload Image")
                     st.session_state.has_download = True
                 else:

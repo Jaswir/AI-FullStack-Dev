@@ -2,6 +2,9 @@ import zipfile
 import os
 import gpt_4_vision
 import gemini_pro_vision
+import requests
+from io import BytesIO
+
 
 # ANSI escape codes for text colors when using print()
 RED = "\033[91m"
@@ -115,5 +118,9 @@ def buildWebsite(image, option):
 
     return zip_file_name
 
+
+def get_image_from_url(image_url):
+    r = requests.get(image_url)
+    return BytesIO(r.content)
 
 # https://colorlib.com/wp/wp-content/uploads/sites/2/table-03.jpg
