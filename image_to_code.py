@@ -1,9 +1,9 @@
 import zipfile
 import os
-import gpt_4_vision
-import gemini_pro_vision
 import requests
 from io import BytesIO
+
+import ai_secret_sauce
 
 
 # ANSI escape codes for text colors when using print()
@@ -14,16 +14,6 @@ BLUE = "\033[94m"
 MAGENTA = "\033[95m"
 CYAN = "\033[96m"
 RESET = "\033[0m"  # Reset color to default
-
-prompt = """Generate code (HTML FULL CODE, CSS FULL CODE) 
-for a website that looks EXACTLY like the one in the image provided, 
-, make sure the stylesheet is called 
-styles.css, Make HTML, CSS code, and make sure to put the code inside 
-```html and ```css tags MAKE SURE CSS INCLUDES HOVER EFFECTS, LEAVE IMAGES' SRC ATTRIBUTES (if there are any images) AS PLACEHOLDERS, DON'T LEAVE ANY OTHER PLACEHOLDERS, INCLUDE ALL THE TEXT AND DON'T LEAVE OUT ANYTHING, MAKE AN EXACT VERSION OF THE WEBSITE IN THE IMAGE PROVIDED. MAKE SURE NONE OF THE  CODES (HTML OR CSS) IS MISSING, MAKE SURE TO PROVIDE CSS CODE, MAKE SURE THERE IS CSS CODE FOR EVERY SINGLE PART AND ELEMENT OF THE WEBSITE, NEVER LEAVE ANY ELEMENT WITHOUT STYLE!!, MAKE SURE THE WEBSITE DESIGN IS PERFECTLY IDENTICAL WITH THE IMAGE PROVIDED, MAKE SURE THE CODE IS FULL,, INCLUDE CSS FOR NAVIGATION BAR ON TOP OF THE WEBSITE IF THERE'S ONE IN THE IMAGE"""
-
-# cleans up old generated_image
-if os.path.exists('./generated_image.png'):
-    os.remove('./generated_image.png')
 
 # Extracts the part between ```html and ``` from raw chat gpt response
 def extractHTMLFromResponse(rawHTMLCSS):
@@ -38,6 +28,7 @@ def extractCSSFromResponse(rawHTMLCSS):
     css = css_without_bullshit_above.split("```")[0]
     return css
 
+
 def addCSSToHtml(html):
     with open("./my_website/styles.css", "r") as file:
         css_string = "<style>" + file.read() + "</style>"
@@ -47,6 +38,7 @@ def addCSSToHtml(html):
     )
 
     return html_plus_css
+
 
 # Put Website in directory with html, css files + readme
 def makeWebsiteDirectory(html, css):
@@ -72,7 +64,7 @@ Follow these steps to run the application:
 1. Open the root directory in the terminal.
 2. Use the following command to run the website: `npx serve` """
 
-    with open(readme_file_name, 'w') as readme_file:
+    with open(readme_file_name, "w") as readme_file:
         readme_file.write(readme_content)
 
     print(
@@ -80,36 +72,11 @@ Follow these steps to run the application:
     )
 
 
-def buildWebsite(image, option):
-    print("Building website...")
-    print("Option: " + option)
+def responseToCodeFiles(response):
+    print(RED + "raw response: " + RESET + response)
 
-    if option == "Image URL":
-        r2 = gemini_pro_vision.getGeminiProResponse(image_url=image, input=prompt)
-
-    elif option == "Upload Image":
-        r1 = gpt_4_vision.chatbotImageFile(image_file=image, input="What is inside of this image?")
-        r2 = gpt_4_vision.chatbotImageFile(
-            image_file=image, input="write separate html and css code to make this"
-        )
-
-    elif option == "Write Script":
-        r1 = gpt_4_vision.chatbotImageFromFilePath(file_path=image, input="What is inside of this image?")
-        r2 = gpt_4_vision.chatbotImageFromFilePath(
-            file_path=image, input="write separate html and css code to make this"
-        )
-
-    rawHTMLCSS = r2
-    print(RED + "rawHTMLCSS: " + RESET + rawHTMLCSS)
-
-    html = extractHTMLFromResponse(rawHTMLCSS)
-    css = extractCSSFromResponse(rawHTMLCSS)
-
-    print(MAGENTA + "Html: " + RESET)
-    print(html)
-    print(YELLOW + "CSS: " + RESET)
-    print(css)
-
+    html = extractHTMLFromResponse(response)
+    css = extractCSSFromResponse(response)
     makeWebsiteDirectory(html, css)
 
     # Create a zip file containing the directory
@@ -123,8 +90,32 @@ def buildWebsite(image, option):
     return zip_file_name
 
 
+# https://colorlib.com/wp/wp-content/uploads/sites/2/table-03.jpg
+
+
+# Helper function for displaying image from url in streamlit
 def get_image_from_url(image_url):
     r = requests.get(image_url)
     return BytesIO(r.content)
 
-# https://colorlib.com/wp/wp-content/uploads/sites/2/table-03.jpg
+
+prompt = """Generate code (HTML FULL CODE, CSS FULL CODE) 
+for a website that looks EXACTLY like the one in the image provided, 
+, make sure the stylesheet is called 
+styles.css, Make HTML, CSS code, and make sure to put the code inside 
+```html and ```css tags MAKE SURE CSS INCLUDES HOVER EFFECTS, LEAVE IMAGES' SRC ATTRIBUTES (if there are any images) AS PLACEHOLDERS, DON'T LEAVE ANY OTHER PLACEHOLDERS, INCLUDE ALL THE TEXT AND DON'T LEAVE OUT ANYTHING, MAKE AN EXACT VERSION OF THE WEBSITE IN THE IMAGE PROVIDED. MAKE SURE NONE OF THE  CODES (HTML OR CSS) IS MISSING, MAKE SURE TO PROVIDE CSS CODE, MAKE SURE THERE IS CSS CODE FOR EVERY SINGLE PART AND ELEMENT OF THE WEBSITE, NEVER LEAVE ANY ELEMENT WITHOUT STYLE!!, MAKE SURE THE WEBSITE DESIGN IS PERFECTLY IDENTICAL WITH THE IMAGE PROVIDED, MAKE SURE THE CODE IS FULL,, INCLUDE CSS FOR NAVIGATION BAR ON TOP OF THE WEBSITE IF THERE'S ONE IN THE IMAGE"""
+
+prompt2 = 'write separate html and css code to make this'
+
+def buildWebsite(image, option, llm):
+    print("Building website...")
+    print("Option: " + option)
+    print("LLM: " + llm)
+
+    if llm == "GPT-4":
+       response = ai_secret_sauce.getGPT4Response(image, prompt2, option)
+
+    elif llm == "Gemini":
+        response = ai_secret_sauce.getGeminiVisionResponse(image, prompt, option)
+
+    responseToCodeFiles(response)

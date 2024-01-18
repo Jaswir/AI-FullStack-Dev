@@ -48,10 +48,6 @@ def main():
         
     elif option == "Write Script":
 
-        # cleans up old generated_image
-        if os.path.exists('./generated_image.png'):
-            os.remove('./generated_image.png')
-
         script = st.text_area("Write your script here:", height=200)
         file_path = './generated_image.png'
 
@@ -86,21 +82,22 @@ def main():
             st.warning("Please enter your PAT to continue:", icon="⚠️")
         else:
             os.environ["CLARIFAI_PAT"] = clarifai_pat
+            llm = "Gemini"
 
             if option == "Image URL":
-                image_to_code.buildWebsite(IMAGE_URL, option="Image URL")
+                image_to_code.buildWebsite(IMAGE_URL, option="Image URL", llm = llm)
                 st.session_state.has_download = True
                 
             elif option == "Upload Image":
                 if IMAGE_FILE is not None:                
-                    image_to_code.buildWebsite(IMAGE_FILE, option="Upload Image")
+                    image_to_code.buildWebsite(IMAGE_FILE, option="Upload Image", llm = llm)
                     st.session_state.has_download = True
                 else:
                     st.warning("Please upload an image to continue:", icon="⚠️")
 
             elif option == "Write Script":
                 if os.path.exists(file_path):
-                    image_to_code.buildWebsite(file_path, option="Write Script")
+                    image_to_code.buildWebsite(file_path, option="Write Script", llm = llm)
                     st.session_state.has_download = True
                 else:
                     st.warning("Please generate an image to continue:", icon="⚠️")

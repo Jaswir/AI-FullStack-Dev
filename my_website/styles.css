@@ -1,42 +1,119 @@
 
-table {
-  width: 100%;
-  border-collapse: collapse;
+/* CSS for the wedding website */
+
+/* Global styles */
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  background-color: #f5f5f5;
 }
 
-caption {
-  font-size: 1.5em;
+h1, h2, h3, h4, h5, h6 {
   font-weight: bold;
-  text-align: center;
+  margin-bottom: 10px;
 }
 
-thead {
-  background-color: #333;
-  color: #fff;
+p {
+  margin-bottom: 10px;
 }
 
-th, td {
-  padding: 8px;
-  text-align: center;
+a {
+  text-decoration: none;
+  color: #333;
 }
 
-tbody tr:nth-child(even) {
+a:hover {
+  color: #666;
+}
+
+/* Header styles */
+
+.header {
   background-color: #f2f2f2;
+  padding: 10px;
+  text-align: center;
 }
 
-tbody tr:hover {
-  background-color: #ddd;
+.header h1 {
+  font-size: 36px;
+  margin-bottom: 5px;
 }
 
-button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+.header p {
+  font-size: 16px;
+  margin-bottom: 0;
 }
 
-button:hover {
-  background-color: #45a049;
+/* Navigation styles */
+
+.navigation {
+  background-color: #333;
+  padding: 10px;
+}
+
+.navigation ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navigation li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.navigation a {
+  color: #fff;
+  font-size: 16px;
+}
+
+.navigation a:hover {
+  color: #666;
+}
+
+/* Main content styles */
+
+.main {
+  padding: 10px;
+}
+
+.image {
+  float: left;
+  margin-right: 10px;
+}
+
+.image img {
+  width: 300px;
+  height: 300px;
+}
+
+.text {
+  float: left;
+  width: 500px;
+}
+
+.text h2 {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.text p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+/* Footer styles */
+
+.footer {
+  background-color: #f2f2f2;
+  padding: 10px;
+  text-align: center;
+}
+
+.footer p {
+  font-size: 16px;
+  margin-bottom: 0;
 }
