@@ -47,6 +47,11 @@ def main():
             st.image(IMAGE_FILE, width = 700)
         
     elif option == "Write Script":
+
+        # cleans up old generated_image
+        if os.path.exists('./generated_image.png'):
+            os.remove('./generated_image.png')
+
         script = st.text_area("Write your script here:", height=200)
         file_path = './generated_image.png'
 

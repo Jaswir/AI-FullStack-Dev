@@ -21,6 +21,10 @@ for a website that looks EXACTLY like the one in the image provided,
 styles.css, Make HTML, CSS code, and make sure to put the code inside 
 ```html and ```css tags MAKE SURE CSS INCLUDES HOVER EFFECTS, LEAVE IMAGES' SRC ATTRIBUTES (if there are any images) AS PLACEHOLDERS, DON'T LEAVE ANY OTHER PLACEHOLDERS, INCLUDE ALL THE TEXT AND DON'T LEAVE OUT ANYTHING, MAKE AN EXACT VERSION OF THE WEBSITE IN THE IMAGE PROVIDED. MAKE SURE NONE OF THE  CODES (HTML OR CSS) IS MISSING, MAKE SURE TO PROVIDE CSS CODE, MAKE SURE THERE IS CSS CODE FOR EVERY SINGLE PART AND ELEMENT OF THE WEBSITE, NEVER LEAVE ANY ELEMENT WITHOUT STYLE!!, MAKE SURE THE WEBSITE DESIGN IS PERFECTLY IDENTICAL WITH THE IMAGE PROVIDED, MAKE SURE THE CODE IS FULL,, INCLUDE CSS FOR NAVIGATION BAR ON TOP OF THE WEBSITE IF THERE'S ONE IN THE IMAGE"""
 
+# cleans up old generated_image
+if os.path.exists('./generated_image.png'):
+    os.remove('./generated_image.png')
+
 # Extracts the part between ```html and ``` from raw chat gpt response
 def extractHTMLFromResponse(rawHTMLCSS):
     html_without_bullshit_above = rawHTMLCSS.split("```html")[1]
