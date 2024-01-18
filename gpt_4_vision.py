@@ -1,5 +1,6 @@
 from clarifai.client.model import Model
 from clarifai.client.input import Inputs
+import os
 
 inference_params = dict(temperature=0.2, max_tokens=250)
 conversation = ""
