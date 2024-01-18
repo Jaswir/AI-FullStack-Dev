@@ -1,112 +1,51 @@
 
-<<<<<<< HEAD
 body {
-  background-color: #1c1c1e;
-  color: white;
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #1c1c1e;
+    color: white;
+    margin: 0;
+    padding: 0;
 }
 
-.navbar {
-  display: flex;
-  justify-content: space-around;
-  padding: 20px 0;
-  background-color: rgba(255, 255, 255, 0.1);
+.dashboard {
+    padding: 20px;
 }
 
-.navbar a {
-  color: white;
-  text-decoration: none;
-  letter-spacing: 2px;
+.stock-detail, .stock-overview, .details {
+    margin-bottom: 20px;
 }
 
-.planet-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 300px;
+.stock-detail h1, .stock h2, .details h3 {
+    color: #a9a9a9;
 }
 
-.planet {
-  position: relative;
-  width: 100px;
-  height: 100px;
-  background: radial-gradient(circle at 50% 50%, #ff7597, #490e62);
-  border-radius: 50%;
+.price {
+    font-size: 24px;
+    font-weight: bold;
 }
 
-.ring {
-  position: absolute;
-  width: 140px;
-  height: 140px;
-  border: 2px solid #ff7597;
-  border-radius: 50%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.changes {
+    font-size: 18px;
 }
 
-.orb {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  background-color: #ff7597;
-  border-radius: 50%;
-  top: 50%;
-  left: 0;
-  transform: translate(-50%, -50%);
+.high, .low, .percent-change {
+    margin-right: 5px;
 }
 
-.bottom-menu {
-  display: flex;
-  justify-content: space-around;
-  padding: 20px 0;
-  background-color: rgba(255, 255, 255, 0.1);
-=======
-table {
-  width: 100%;
-  border-collapse: collapse;
+.mini-chart {
+    height: 50px;
+    background-color: #333;
+    margin-top: 5px;
 }
 
-caption {
-  font-size: 1.5em;
-  font-weight: bold;
-  text-align: center;
+/* Placeholder for where a chart would go */
+.chart, .mini-chart {
+    color: #777;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-th, td {
-  border: 1px solid black;
-  padding: 5px;
-}
+/* Add more CSS here for layout, typography, colors, etc. */
 
-th {
-  text-align: center;
-}
-
-tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-button {
-  background-color: #4caf50;
-  color: white;
-  padding: 5px 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #48b160;
->>>>>>> feff6a4c0e8958dd12d7cdf62a8ab7e86e70847e
-}
-
-.bottom-menu button {
-  background: none;
-  border: none;
-  color: white;
-  padding: 10px 20px;
-  border-bottom: 2px solid #ff7597;
-}
-
+/* You can add responsiveness and interactivity using media queries and JavaScript */

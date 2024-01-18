@@ -32,7 +32,7 @@ def chatbotImageFile(input, image_file):
     with open(file_path, "wb") as f:
         f.write(uploaded_file.getbuffer())
 
-    chatbotImageFromFilePath(input, file_path)
+    return chatbotImageFromFilePath(input, file_path)
 
 
 def chatbotImageURL(input, image_url):
