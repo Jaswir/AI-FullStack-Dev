@@ -25,6 +25,9 @@ def extractHTMLFromResponse(rawHTMLCSS):
 
 # Extracts the part between ```css and ``` from raw chat gpt response
 def extractCSSFromResponse(rawHTMLCSS):
+    if "```css" not in rawHTMLCSS:
+        return ""
+
     css_without_bullshit_above = rawHTMLCSS.split("```css")[1]
     css = css_without_bullshit_above.split("```")[0]
     return css
@@ -42,7 +45,7 @@ def addCSSToHtml(html):
 
 
 # Put Website in directory with html, css files + readme
-def makeWebsiteDirectory(html, css):
+def writeCodeToWebsiteDirectory(html, css):
     directory_name = "my_website"
     if not os.path.exists(directory_name):
         os.mkdir(directory_name)
@@ -73,13 +76,16 @@ Follow these steps to run the application:
     )
 
 
-def responseToCodeFiles(response):
+def updateCodeFiles(response):
     print(RED + "raw response: " + RESET + response)
 
+    # Update html and css
     html = extractHTMLFromResponse(response)
     css = extractCSSFromResponse(response)
-    makeWebsiteDirectory(html, css)
+    writeCodeToWebsiteDirectory(html, css)
 
+
+def zipCodeFiles():
     # Create a zip file containing the directory
     zip_file_name = "my_website.zip"
     with zipfile.ZipFile(zip_file_name, "w", zipfile.ZIP_DEFLATED) as zipf:
@@ -112,25 +118,40 @@ prompt3 = """Describe the elements in this image, the positioning, give me all t
 if there's a table provide me all the data that it contains in a json"""
 
 
+prompt0 = "write separate html and css code to make this"
+
+fill_data_prompt = (
+    "Put all of the data inside of this table inside of the following html code, give back full html code inside ```html tag: "
+)
+
+
 def buildWebsite(image, option, llm):
     print("Building website...")
     print("Option: " + option)
     print("LLM: " + llm)
 
     if llm == "GPT-4":
-        response = ai_secret_sauce.getGPT4Response(image, prompt2, option)
+        response = ai_secret_sauce.getGPT4Response(image, prompt0, option)
+        updateCodeFiles(response)
+
+        # Input data inside of the tables correctly.
+        data_filled_in = ai_secret_sauce.getGeminiVisionResponse(
+            image, fill_data_prompt + response, option
+        )
+
+        updateCodeFiles(data_filled_in)
 
     elif llm == "Gemini":
-        geminiResponse = ai_secret_sauce.getGeminiVisionResponse(image, prompt3, option)
+        geminiResponse = ai_secret_sauce.getGeminiVisionResponse(image, prompt, option)
 
-        print(BLUE + "Gemini response: " + RESET + geminiResponse)
+        # print(BLUE + "Gemini response: " + RESET + geminiResponse)
 
-        geminiResponse2 = ai_secret_sauce.getGeminiVisionResponse(
-            image=None, input=prompt2, option=option
-        )
-        response = geminiResponse2
+        # geminiResponse2 = ai_secret_sauce.getGeminiVisionResponse(
+        #     image=None, input=prompt2, option=option
+        # )
+        response = geminiResponse
 
-    responseToCodeFiles(response)
+    zipCodeFiles()
 
 
 # geminiResponse = ai_secret_sauce.getGeminiVisionResponse(image, prompt, option)

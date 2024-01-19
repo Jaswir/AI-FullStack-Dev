@@ -1,29 +1,64 @@
 
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.table-container {
+    width: 80%;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    text-align: center;
+}
+
 table {
-  border-collapse: collapse;
-  width: 100%;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
 }
 
-th, td {
-  text-align: center;
-  padding: 8px;
+table thead th {
+    background-color: #5e3f99;
+    color: #fff;
+    padding: 10px;
+    text-align: left;
 }
 
-tr:nth-child(even) {background-color: #f2f2f2;}
-
-th {
-  background-color: #444444;
-  color: white;
+table tbody td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    background-color: #fff;
+    color: #333;
 }
 
-button {
-  background-color: #444444;
-  color: white;
-  padding: 8px 16px;
-  border: none;
-  cursor: pointer;
+table tbody tr:last-child td {
+    border-bottom: none;
 }
 
-button:hover {
-  background-color: #333333;
+.buy-now {
+    border: 2px solid #5e3f99;
+    background-color: #fff;
+    color: #5e3f99;
+    padding: 5px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.buy-now:hover {
+    background-color: #5e3f99;
+    color: #fff;
+}
+
+@media screen and (max-width: 600px) {
+    .table-container {
+        width: 95%;
+        margin: 20px auto;
+    }
 }

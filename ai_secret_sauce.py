@@ -171,7 +171,7 @@ def getGeminiVisionResponseImageURL(image_url, input):
             {
                 "type": "image_url",
                 "image_url": image_url,
-            },
+            }
         )
 
         content.append(image_content)

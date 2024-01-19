@@ -1,90 +1,78 @@
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Table</title>
-  <style>
-    table {
-      border-collapse: collapse;
-      width: 100%;
-    }
-
-    th, td {
-      text-align: center;
-      padding: 8px;
-    }
-
-    tr:nth-child(even) {background-color: #f2f2f2;}
-
-    th {
-      background-color: #444444;
-      color: white;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing Table</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <table>
-    <caption>Table</caption>
-    <thead>
-      <tr>
-        <th>TLD</th>
-        <th>Duration</th>
-        <th>Registration</th>
-        <th>Renewal</th>
-        <th>Transfer</th>
-        <th>Register</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>.com</td>
-        <td>1 year</td>
-        <td>$70.00</td>
-        <td>$5.00</td>
-        <td>$5.00</td>
-        <td><button>Sign Up</button></td>
-      </tr>
-      <tr>
-        <td>.net</td>
-        <td>1 year</td>
-        <td>$75.00</td>
-        <td>$5.00</td>
-        <td>$5.00</td>
-        <td><button>Sign Up</button></td>
-      </tr>
-      <tr>
-        <td>.org</td>
-        <td>1 year</td>
-        <td>$65.00</td>
-        <td>$5.00</td>
-        <td>$5.00</td>
-        <td><button>Sign Up</button></td>
-      </tr>
-      <tr>
-        <td>.biz</td>
-        <td>1 year</td>
-        <td>$60.00</td>
-        <td>$5.00</td>
-        <td>$5.00</td>
-        <td><button>Sign Up</button></td>
-      </tr>
-      <tr>
-        <td>.info</td>
-        <td>1 year</td>
-        <td>$50.00</td>
-        <td>$5.00</td>
-        <td>$5.00</td>
-        <td><button>Sign Up</button></td>
-      </tr>
-      <tr>
-        <td>.me</td>
-        <td>1 year</td>
-        <td>$45.00</td>
-        <td>$5.00</td>
-        <td>$5.00</td>
-        <td><button>Sign Up</button></td>
-      </tr>
-    </tbody>
-  </table>
+<div class="table-container">
+    <h1>Table #03</h1>
+    <h2>Create Your Domain Name</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>TLD</th>
+                <th>Duration</th>
+                <th>Registration</th>
+                <th>Renewal</th>
+                <th>Transfer</th>
+                <th></th> <!-- Empty header for the buttons -->
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>.com</td>
+                <td>1 Year</td>
+                <td>$70.00</td>
+                <td>$5.00</td>
+                <td>$5.00</td>
+                <td><button class="buy-now">Sign Up</button></td>
+            </tr>
+            <tr>
+                <td>.net</td>
+                <td>1 Year</td>
+                <td>$75.00</td>
+                <td>$5.00</td>
+                <td>$5.00</td>
+                <td><button class="buy-now">Sign Up</button></td>
+            </tr>
+            <tr>
+                <td>.org</td>
+                <td>1 Year</td>
+                <td>$65.00</td>
+                <td>$5.00</td>
+                <td>$5.00</td>
+                <td><button class="buy-now">Sign Up</button></td>
+            </tr>
+            <tr>
+                <td>.biz</td>
+                <td>1 Year</td>
+                <td>$60.00</td>
+                <td>$5.00</td>
+                <td>$5.00</td>
+                <td><button class="buy-now">Sign Up</button></td>
+            </tr>
+            <tr>
+                <td>.info</td>
+                <td>1 Year</td>
+                <td>$50.00</td>
+                <td>$5.00</td>
+                <td>$5.00</td>
+                <td><button class="buy-now">Sign Up</button></td>
+            </tr>
+            <tr>
+                <td>.me</td>
+                <td>1 Year</td>
+                <td>$45.00</td>
+                <td>$5.00</td>
+                <td>$5.00</td>
+                <td><button class="buy-now">Sign Up</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>
