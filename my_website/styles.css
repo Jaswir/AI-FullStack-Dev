@@ -1,55 +1,99 @@
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+body, html {
     margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
 }
 
-.pricing-table {
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.container {
+    background: linear-gradient(135deg, #6d5bba 0%, #8d58c1 100%);
+    color: white;
     padding: 20px;
-    border-radius: 8px;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
-.header h1, .header h2 {
+header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 0;
+}
+
+.contact-btn {
+    background-color: #554079;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.headline-container {
+    max-width: 50%;
+}
+
+h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+.subtext {
+    color: #e6e6e6;
+}
+
+.email-signup {
+    margin: 20px 0;
+}
+
+.email-signup input {
+    padding: 10px;
+    margin-right: 10px;
+    border: none;
+}
+
+.signup-btn {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.reviews {
+    font-size: 0.9em;
+}
+
+.stars {
+    color: #ffc107;
+}
+
+.review-count {
+    margin-left: 5px;
+}
+
+.hero-image {
+    background-color: #ff6f61;
+    padding: 30px;
+    border-radius: 20px;
     text-align: center;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
+@media (max-width: 768px) {
+    .main {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 
-thead {
-    background-color: #5e3f99;
-    color: #fff;
-}
+    .headline-container {
+        max-width: 100%;
+    }
 
-th, td {
-    text-align: left;
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-}
-
-tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-button {
-    background-color: #5e3f99;
-    color: #fff;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #503587;
+    .hero-image {
+        margin-top: 20px;
+    }
 }

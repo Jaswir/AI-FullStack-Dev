@@ -62,7 +62,7 @@ def main():
                 
                 if option == "Write Script":
                     output_base64 = script_to_image.process_script(script)
-                    with open(file_path, 'wb') as f:
+                    with open(file_path, 'wb', encoding="utf8") as f:
                         f.write(output_base64)
                     st.success("Image generated successfully!")
 
@@ -113,10 +113,10 @@ def main():
     file_path_css = "./my_website/styles.css"
 
 
-    with open(file_path_html, "r") as file:
+    with open(file_path_html, "r", encoding="utf8") as file:
         html_string = file.read()
 
-    with open(file_path_css, "r") as file:
+    with open(file_path_css, "r", encoding="utf8") as file:
         css_string = '<style>' + file.read() + '</style>'
 
     html_plus_css = html_string.replace('<link rel="stylesheet" href="styles.css">', css_string)

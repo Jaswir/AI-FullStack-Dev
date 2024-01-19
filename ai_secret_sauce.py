@@ -17,6 +17,10 @@ inference_params = dict(temperature=0.2, max_tokens=250)
 conversation = ""
 gemini_conversation = []
 
+info_prompt = """What is inside of this image? You need to give me information 
+                about colors, padding and layout, data inside table/elements, text in the image
+"""
+
 
 def getGPT4Response(image, prompt, option):
     if option == "Image URL":
@@ -58,7 +62,7 @@ def getGeminiVisionResponse(image, prompt, option):
 
 
 def chatbotImageFromFilePath(input, file_path):
-    with open(file_path, "rb") as image_file:
+    with open(file_path, "rb", encoding="utf8") as image_file:
         image_bytes = image_file.read()
 
     global conversation
@@ -82,7 +86,7 @@ def chatbotImageFile(input, image_file):
     # Temporarily saves the file to directory and read in as bytes
     uploaded_file = image_file
     file_path = os.path.join("tmpDirUploadedImage", uploaded_file.name)
-    with open(file_path, "wb") as f:
+    with open(file_path, "wb", encoding="utf8") as f:
         f.write(uploaded_file.getbuffer())
 
     return chatbotImageFromFilePath(input, file_path)
@@ -167,12 +171,10 @@ def getGeminiVisionResponseImageURL(image_url, input):
     ]
 
     if image_url is not None:
-        image_content = (
-            {
-                "type": "image_url",
-                "image_url": image_url,
-            }
-        )
+        image_content = {
+            "type": "image_url",
+            "image_url": image_url,
+        }
 
         content.append(image_content)
 

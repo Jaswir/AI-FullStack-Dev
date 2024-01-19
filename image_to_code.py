@@ -34,7 +34,7 @@ def extractCSSFromResponse(rawHTMLCSS):
 
 
 def addCSSToHtml(html):
-    with open("./my_website/styles.css", "r") as file:
+    with open("./my_website/styles.css", "r", encoding="utf8") as file:
         css_string = "<style>" + file.read() + "</style>"
 
     html_plus_css = html.replace(
@@ -54,10 +54,10 @@ def writeCodeToWebsiteDirectory(html, css):
     css_file_name = os.path.join(directory_name, "styles.css")
     readme_file_name = os.path.join(directory_name, "README.md")
 
-    with open(html_file_name, "w") as html_file:
+    with open(html_file_name, "w", encoding="utf-8") as html_file:
         html_file.write(html)
 
-    with open(css_file_name, "w") as css_file:
+    with open(css_file_name, "w", encoding="utf-8") as css_file:
         css_file.write(css)
 
     readme_content = """
@@ -68,7 +68,7 @@ Follow these steps to run the application:
 1. Open the root directory in the terminal.
 2. Use the following command to run the website: `npx serve` """
 
-    with open(readme_file_name, "w") as readme_file:
+    with open(readme_file_name, "w", encoding="utf8") as readme_file:
         readme_file.write(readme_content)
 
     print(
@@ -120,9 +120,9 @@ if there's a table provide me all the data that it contains in a json"""
 
 prompt0 = "write separate html and css code to make this"
 
-fill_data_prompt = (
-    "If there's a table, put all of the data inside of this table inside of the following html code, give back full html code inside ```html tag: "
-)
+fill_data_prompt = """does the image contain a table? If so, put all of the data 
+    inside of this table inside of the following html code, give back 
+    full html code inside ```html tag:"""
 
 
 def buildWebsite(image, option, llm):
@@ -135,11 +135,20 @@ def buildWebsite(image, option, llm):
         updateCodeFiles(response)
 
         # Input data inside of the tables correctly.
-        data_filled_in = ai_secret_sauce.getGeminiVisionResponse(
-            image, fill_data_prompt + response, option
-        )
 
-        updateCodeFiles(data_filled_in)
+        has_table_string = ai_secret_sauce.getGeminiVisionResponse(
+            image, "does the image contain a table?", option
+        )
+        has_table = not "No" in has_table_string
+
+        print("Processing layer to fill in data:" , has_table)
+
+        if has_table:
+            data_filled_in = ai_secret_sauce.getGeminiVisionResponse(
+                image, fill_data_prompt + response, option
+            )
+
+            updateCodeFiles(data_filled_in)
 
     elif llm == "Gemini":
         geminiResponse = ai_secret_sauce.getGeminiVisionResponse(image, prompt, option)
@@ -150,6 +159,7 @@ def buildWebsite(image, option, llm):
         #     image=None, input=prompt2, option=option
         # )
         response = geminiResponse
+        updateCodeFiles(response)
 
     zipCodeFiles()
 
