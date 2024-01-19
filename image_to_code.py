@@ -132,7 +132,7 @@ def buildWebsite(image, option, llm):
     print("LLM: " + llm)
 
     if llm == "GPT-4":
-        response = ai_secret_sauce.getGPT4Response(image, prompt0, option)
+        response = ai_secret_sauce.getGPT4VisionResponse(image, prompt0, option)
         updateCodeFiles(response)
 
         # Input data inside of the tables correctly.
@@ -142,7 +142,7 @@ def buildWebsite(image, option, llm):
         )
         has_table = not "No" in has_table_string
 
-        print("Processing layer to fill in data:" , has_table)
+        print("Processing layer to fill in data:", has_table)
 
         if has_table:
             data_filled_in = ai_secret_sauce.getGeminiVisionResponse(
@@ -153,26 +153,32 @@ def buildWebsite(image, option, llm):
 
     elif llm == "Gemini":
         geminiResponse = ai_secret_sauce.getGeminiVisionResponse(image, prompt, option)
-
-        # print(BLUE + "Gemini response: " + RESET + geminiResponse)
-
-        # geminiResponse2 = ai_secret_sauce.getGeminiVisionResponse(
-        #     image=None, input=prompt2, option=option
-        # )
         response = geminiResponse
         updateCodeFiles(response)
 
     zipCodeFiles()
 
 
-# geminiResponse = ai_secret_sauce.getGeminiVisionResponse(image, prompt, option)
-# print(BLUE + "Gemini response: " + RESET + geminiResponse)
+def improveWebsite(prompt):
+    print("Improving website...")
 
-# colorfixed = ai_secret_sauce.chatbotImageURL(
-#     image_url=image,
-#     input="""fix the colors of the website to match colours in the image
-#     return the fixed html and css code for the website"""
-#     + geminiResponse,
-# )
+    # Get current code
+    file_path_html = "./my_website/index.html"
+    file_path_css = "./my_website/styles.css"
 
-# response = colorfixed
+    with open(file_path_html, "r", encoding="utf8") as file:
+        html_string = file.read()
+
+    with open(file_path_css, "r", encoding="utf8") as file:
+        css_string = "<style>" + file.read() + "</style>"
+
+    code = html_string.replace('<link rel="stylesheet" href="styles.css">', css_string)
+
+   
+    input = prompt + """, improve this code: """ + code 
+    response = ai_secret_sauce.getGeminiResponse(input)
+
+    print(BLUE + "Code: " + RESET + response)
+
+    updateCodeFiles(response)
+    zipCodeFiles()

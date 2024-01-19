@@ -4,45 +4,116 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Developer Platform</title>
-<link rel="stylesheet" href="styles.css">
+<title>Webpage Mockup</title>
+<style>
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    background-color: #5e4baa;
+    color: white;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+header {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.contact-btn {
+    background-color: #5e4baa;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.main {
+    display: flex;
+    justify-content: space-between;
+}
+
+.headline-container {
+    max-width: 500px;
+}
+
+h1 {
+    margin-top: 0;
+}
+
+.email-signup {
+    margin-top: 20px;
+}
+
+.email-signup input {
+    padding: 10px;
+    margin-right: 10px;
+}
+
+.signup-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.customer-reviews {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.star-icon {
+    color: orange;
+    margin-right: 5px;
+}
+
+.reviews {
+    margin-left: 5px;
+}
+
+.hero-image {
+    background-color: #ee6e73;
+    color: #5e4baa;
+    padding: 30px;
+    border-radius: 8px;
+    width: 200px;
+    text-align: center;
+    position: absolute;
+    right: 20px;
+    top: 100px;
+}
+</style>
 </head>
 <body>
-<header>
-  <nav>
-    <ul>
-      <li><a href="#">Platform</a></li>
-      <li><a href="#">Solutions</a></li>
-      <li><a href="#">Enterprise</a></li>
-      <!-- Add more nav items here -->
-    </ul>
-  </nav>
-</header>
-<section class="hero">
-  <div class="headline">
-    <h1>The LLM Developer Platform</h1>
-    <p>Build on the fastest, production-grade deep learning platform for developers and ML engineers.</p>
-    <button class="cta">Start building</button>
-    <button class="cta">Request a demo</button>
-  </div>
-  <div class="code-snippet">
-    <!-- Code snippet would go here -->
-  </div>
-</section>
-<section class="metrics">
-  <div class="metric">170+<span>Publications</span></div>
-  <div class="metric">250k+<span>Developers</span></div>
-  <div class="metric">1M+<span>Models Trained</span></div>
-  <div class="metric">Billions<span>of Parameters</span></div>
-</section>
-<footer>
-  <div class="awards">
-    <div>Awards & Recognition</div>
-    <img src="gartner.png" alt="Gartner">
-    <img src="idc.png" alt="IDC">
-    <img src="forrester.png" alt="Forrester">
-    <!-- Logos would need to be replaced with actual images -->
-  </div>
-</footer>
+<div class="container">
+    <header>
+        <button class="contact-btn">Contact</button>
+    </header>
+    <main>
+        <div class="headline-container">
+            <h1>A Thought-Provoking Headline</h1>
+            <p>A quick value proposition that will make your visitors want to click on or sign up for your offer.</p>
+            <div class="email-signup">
+                <input type="email" placeholder="Insert email address">
+                <button class="signup-btn">Sign Up</button>
+            </div>
+            <div class="customer-reviews">
+                <span class="star-icon">★</span>
+                <span>Our Happy Customers</span>
+                <span class="reviews">4.5 | 100k Reviews</span>
+            </div>
+        </div>
+        <div class="hero-image">
+            <span>Hero Image that highlights your product or its value.</span>
+        </div>
+    </main>
+</div>
 </body>
 </html>

@@ -25,7 +25,7 @@ info_prompt_0 = """What is inside of this image? You need to give me information
                              about colors, padding, data inside table, text in the image"""
 
 
-def getGPT4Response(image, prompt, option):
+def getGPT4VisionResponse(image, prompt, option):
     if option == "Image URL":
         r1 = chatbotImageURL(
             image_url=image,
@@ -40,27 +40,22 @@ def getGPT4Response(image, prompt, option):
         r2 = chatbotImageFile(image_file=image, input=prompt)
 
     elif option == "Write Script":
-        r1 = chatbotImageFromFilePath(
-            file_path=image, input=info_prompt
-        )
+        r1 = chatbotImageFromFilePath(file_path=image, input=info_prompt)
         print("r1: " + r1)
         r2 = chatbotImageFromFilePath(file_path=image, input=prompt)
 
     return r2
 
 
-def getGeminiVisionResponse(image, prompt, option):
-    if option == "Image URL":
-        r1 = getGeminiVisionResponseImageURL(image_url=image, input=prompt)
+def getGPT4Response(prompt):
+    model_prediction = Model(
+        "https://clarifai.com/openai/chat-completion/models/GPT-4"
+    ).predict_by_bytes(
+        prompt.encode(), input_type="text", inference_params=inference_params
+    )
 
-    elif option == "Upload Image":
-        image_file_path = os.path.join("tmpDirUploadedImage", image.name)
-        r1 = getGeminiVisionResponseImageFile(image_path=image_file_path, input=prompt)
-
-    elif option == "Write Script":
-        r1 = getGeminiVisionResponseImageFile(image_path=image, input=prompt)
-
-    return r1
+    response = model_prediction.outputs[0].data.text.raw
+    return response
 
 
 def chatbotImageFromFilePath(input, file_path):
@@ -112,6 +107,20 @@ def chatbotImageURL(input, image_url):
     return response
 
 
+def getGeminiVisionResponse(image, prompt, option):
+    if option == "Image URL":
+        r1 = getGeminiVisionResponseImageURL(image_url=image, input=prompt)
+
+    elif option == "Upload Image":
+        image_file_path = os.path.join("tmpDirUploadedImage", image.name)
+        r1 = getGeminiVisionResponseImageFile(image_path=image_file_path, input=prompt)
+
+    elif option == "Write Script":
+        r1 = getGeminiVisionResponseImageFile(image_path=image, input=prompt)
+
+    return r1
+
+
 def getGeminiVisionResponseImageFile(input, image_path):
     genai.configure(api_key=GOOGLE_API_KEY)
 
@@ -155,7 +164,7 @@ def getGeminiVisionResponseImageFile(input, image_path):
         f"{input}\n",
         image_parts[0],
     ]
-    
+
     response = model.generate_content(prompt_parts)
     return response.text
 
@@ -201,3 +210,18 @@ def getGeminiVisionResponseImageURL(image_url, input):
     gemini_conversation.append(gemini_response)
 
     return text
+
+
+def getGeminiResponse(input):
+    gemini_inference_params = dict(
+        temperature=0.2, top_k=50, top_p=0.95, max_tokens=4096
+    )
+    # Model Predict
+    model_prediction = Model(
+        "https://clarifai.com/gcp/generate/models/gemini-pro"
+    ).predict_by_bytes(
+        input.encode(), input_type="text", inference_params=gemini_inference_params
+    )
+
+    response = model_prediction.outputs[0].data.text.raw
+    return response
