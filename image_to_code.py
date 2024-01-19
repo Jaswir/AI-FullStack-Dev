@@ -121,7 +121,7 @@ if there's a table provide me all the data that it contains in a json"""
 prompt0 = "write separate html and css code to make this"
 
 fill_data_prompt = (
-    "Put all of the data inside of this table inside of the following html code, give back full html code inside ```html tag: "
+    "If there's a table, put all of the data inside of this table inside of the following html code, give back full html code inside ```html tag: "
 )
 
 

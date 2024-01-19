@@ -2,19 +2,21 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     margin: 0;
-    padding: 0;
 }
 
-.table-container {
-    width: 80%;
-    margin: 50px auto;
+.pricing-table {
     background-color: #fff;
-    padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 8px;
 }
 
-h1, h2 {
+.header h1, .header h2 {
     text-align: center;
 }
 
@@ -24,41 +26,30 @@ table {
     margin-top: 20px;
 }
 
-table thead th {
+thead {
     background-color: #5e3f99;
     color: #fff;
-    padding: 10px;
-    text-align: left;
 }
 
-table tbody td {
+th, td {
+    text-align: left;
     padding: 10px;
     border-bottom: 1px solid #ddd;
-    background-color: #fff;
-    color: #333;
 }
 
-table tbody tr:last-child td {
-    border-bottom: none;
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
 }
 
-.buy-now {
-    border: 2px solid #5e3f99;
-    background-color: #fff;
-    color: #5e3f99;
-    padding: 5px 15px;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.buy-now:hover {
+button {
     background-color: #5e3f99;
     color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-@media screen and (max-width: 600px) {
-    .table-container {
-        width: 95%;
-        margin: 20px auto;
-    }
+button:hover {
+    background-color: #503587;
 }
