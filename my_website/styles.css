@@ -5,82 +5,84 @@ body, html {
   font-family: Arial, sans-serif;
 }
 
-.container {
-  background-color: #5e4b8b;
-  color: white;
-  min-height: 100vh;
-  padding: 20px;
-  box-sizing: border-box;
-}
-
 header {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.contact-button {
-  background-color: transparent;
-  border: 2px solid white;
+  background-color: white;
   padding: 10px 20px;
-  cursor: pointer;
 }
 
-main {
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+nav ul li {
+  margin-right: 20px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: black;
+}
+
+.hero {
   display: flex;
   justify-content: space-between;
-  margin-top: 40px;
+  background: linear-gradient(to bottom right, white, #000046);
+  padding: 20px;
+  color: white;
 }
 
-.headline {
-  max-width: 50%;
+.headline h1 {
+  color: black;
+  font-size: 2em;
 }
 
-h1 {
-  font-size: 2.5em;
-  margin-top: 0;
+.headline p {
+  color: black;
 }
 
-.signup-form {
-  display: flex;
-  margin-top: 20px;
-}
-
-.signup-form input[type="email"] {
-  padding: 10px;
-  margin-right: 10px;
+.cta {
+  background-color: blue;
+  color: white;
   border: none;
-}
-
-.signup-button {
-  background-color: #4fb0a6;
-  border: none;
-  padding: 10px 20px;
+  padding: 10px 15px;
+  margin-top: 10px;
   cursor: pointer;
 }
 
-.hero-image {
-  background-color: #ffa1a1;
-  padding: 30px;
-  margin-left: 20px;
-  max-width: 40%;
+.code-snippet {
+  background-color: #0e153a;
+  color: white;
+  padding: 20px;
+  width: 40%;
+  /* Code syntax highlighting would require additional styles */
+}
+
+.metrics {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+.metric {
   text-align: center;
-  font-weight: bold;
 }
 
-aside {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
+.metric span {
+  color: blue;
 }
 
-.accent-shape {
-  background-color: #4fb0a6;
-  width: 100px;
-  height: 100px;
-  clip-path: polygon(20% 0%, 100% 0, 80% 100%, 0% 100%);
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
+footer .awards {
+  background-color: #000046;
+  text-align: center;
+  padding: 10px;
 }
 
-/* Additional styling and responsive design would be needed for a complete page. */
+footer .awards img {
+  margin: 0 10px;
+  /* Actual images and their sizes would affect the layout */
+}
+
+/* Additional styles for responsiveness and fine-tuning would be necessary */

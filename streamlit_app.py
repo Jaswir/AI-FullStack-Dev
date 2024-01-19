@@ -107,34 +107,33 @@ def main():
 
                     
     # Provide a download link for the zip file
-    # if st.session_state.has_download:
+    if st.session_state.has_download:
      
+        file_path_html = "./my_website/index.html"
+        file_path_css = "./my_website/styles.css"
 
-    file_path_html = "./my_website/index.html"
-    file_path_css = "./my_website/styles.css"
 
+        with open(file_path_html, "r", encoding="utf8") as file:
+            html_string = file.read()
 
-    with open(file_path_html, "r", encoding="utf8") as file:
-        html_string = file.read()
+        with open(file_path_css, "r", encoding="utf8") as file:
+            css_string = '<style>' + file.read() + '</style>'
 
-    with open(file_path_css, "r", encoding="utf8") as file:
-        css_string = '<style>' + file.read() + '</style>'
+        html_plus_css = html_string.replace('<link rel="stylesheet" href="styles.css">', css_string)
 
-    html_plus_css = html_string.replace('<link rel="stylesheet" href="styles.css">', css_string)
+        st.components.v1.html(
+            html_plus_css,
+            width=window_width,
+            height=window_width / 16 * 9,
+        )
 
-    st.components.v1.html(
-        html_plus_css,
-        width=window_width,
-        height=window_width / 16 * 9,
-    )
-
-    st.subheader("Click the button below to get the code")
-    st.download_button(
-        label="Get Code",
-        data=open("my_website.zip", "rb").read(),
-        key="download_directory",
-        file_name="my_website.zip",
-    )
+        st.subheader("Click the button below to get the code")
+        st.download_button(
+            label="Get Code",
+            data=open("my_website.zip", "rb").read(),
+            key="download_directory",
+            file_name="my_website.zip",
+        )
 
 
 if __name__ == "__main__":
