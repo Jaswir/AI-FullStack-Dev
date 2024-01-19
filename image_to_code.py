@@ -57,8 +57,9 @@ def writeCodeToWebsiteDirectory(html, css):
     with open(html_file_name, "w", encoding="utf-8") as html_file:
         html_file.write(html)
 
-    with open(css_file_name, "w", encoding="utf-8") as css_file:
-        css_file.write(css)
+    if css != "":
+        with open(css_file_name, "w", encoding="utf-8") as css_file:
+            css_file.write(css)
 
     readme_content = """
 # How to Run the Application

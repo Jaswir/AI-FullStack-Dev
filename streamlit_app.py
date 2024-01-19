@@ -62,7 +62,7 @@ def main():
                 
                 if option == "Write Script":
                     output_base64 = script_to_image.process_script(script)
-                    with open(file_path, 'wb', encoding="utf8") as f:
+                    with open(file_path, 'wb') as f:
                         f.write(output_base64)
                     st.success("Image generated successfully!")
 
@@ -76,8 +76,9 @@ def main():
             )
              
 
-    # Add a button to run the script
-    llm = st.radio("LLM:", ("Gemini", "GPT-4"))
+    # Developer options
+    if hostname == "localhost":
+        llm = st.radio("LLM:", ("Gemini", "GPT-4"))
 
     if st.button("Build Website"):
         if not clarifai_pat:

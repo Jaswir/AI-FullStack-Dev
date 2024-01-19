@@ -35,13 +35,13 @@ def getGPT4Response(image, prompt, option):
         r2 = chatbotImageURL(image_url=image, input=prompt)
 
     elif option == "Upload Image":
-        r1 = chatbotImageFile(image_file=image, input="What is inside of this image?")
+        r1 = chatbotImageFile(image_file=image, input=info_prompt)
         print("r1: " + r1)
         r2 = chatbotImageFile(image_file=image, input=prompt)
 
     elif option == "Write Script":
         r1 = chatbotImageFromFilePath(
-            file_path=image, input="What is inside of this image?"
+            file_path=image, input=info_prompt
         )
         print("r1: " + r1)
         r2 = chatbotImageFromFilePath(file_path=image, input=prompt)
@@ -155,7 +155,7 @@ def getGeminiVisionResponseImageFile(input, image_path):
         f"{input}\n",
         image_parts[0],
     ]
-
+    
     response = model.generate_content(prompt_parts)
     return response.text
 
