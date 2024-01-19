@@ -18,8 +18,9 @@ RESET = "\033[0m"  # Reset color to default
 
 # Extracts the part between ```html and ``` from raw chat gpt response
 def extractHTMLFromResponse(rawHTMLCSS):
-    html_without_bullshit_above = rawHTMLCSS.split("```html")[1]
-    html = html_without_bullshit_above.split("```")[0]
+    html_without_bullshit_above = rawHTMLCSS.split("<!DOCTYPE html>")[1]
+    html = html_without_bullshit_above.split("</html>")[0]
+    html = "<!DOCTYPE html>" + html + "</html>"
     return html
 
 
@@ -177,8 +178,6 @@ def improveWebsite(prompt):
    
     input = prompt + """, improve this code: """ + code 
     response = ai_secret_sauce.getGeminiResponse(input)
-
-    print(BLUE + "Code: " + RESET + response)
 
     updateCodeFiles(response)
     zipCodeFiles()

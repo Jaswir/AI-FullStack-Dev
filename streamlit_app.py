@@ -10,6 +10,9 @@ import script_to_image
 if "has_download" not in st.session_state:
     st.session_state.has_download = False
 
+if "improved" not in st.session_state:
+    st.session_state.improved = False
+
 st.set_page_config(layout="wide")
 
 st.title("AI Website Builder")
@@ -104,47 +107,52 @@ def main():
                 else:
                     st.warning("Please generate an image to continue:", icon="⚠️")
 
-    # Provide a download link for the zip file
-    file_path_html = "./my_website/index.html"
-    file_path_css = "./my_website/styles.css"
 
-    with open(file_path_html, "r", encoding="utf8") as file:
-        html_string = file.read()
 
-    with open(file_path_css, "r", encoding="utf8") as file:
-        css_string = "<style>" + file.read() + "</style>"
+    if st.session_state.has_download:
+        user_feedback = st.text_area(
+            label="Improve website:",
+            label_visibility="hidden",
+            placeholder="insert website improvements",
+            height=200,
+        )
 
-    html_plus_css = html_string.replace(
-        '<link rel="stylesheet" href="styles.css">', css_string
-    )
+        if st.button("Improve Website"):
+            if user_feedback:
+                image_to_code.improveWebsite(user_feedback)
 
-    st.components.v1.html(
-        html_plus_css,
-        width=window_width,
-        height=window_width / 16 * 9,
-    )
+            else:
+                st.warning("No text inserted", icon="⚠️")
 
-    user_feedback = st.text_area(
-        label="Improve website:",
-        label_visibility="hidden",
-        placeholder="insert website improvements",
-        height=200,
-    )
 
-    if st.button("Improve Website"):
-        if user_feedback:
-            image_to_code.improveWebsite(user_feedback)
+        
 
-        else:
-            st.warning("No text inserted", icon="⚠️")
+        file_path_html = "./my_website/index.html"
+        file_path_css = "./my_website/styles.css"
 
-    st.subheader("Click the button below to get the code")
-    st.download_button(
-        label="Get Code",
-        data=open("my_website.zip", "rb").read(),
-        key="download_directory",
-        file_name="my_website.zip",
-    )
+        with open(file_path_html, "r", encoding="utf8") as file:
+            html_string = file.read()
+        with open(file_path_css, "r", encoding="utf8") as file:
+            css_string = "<style>" + file.read() + "</style>"
+
+        html_plus_css = html_string.replace(
+            '<link rel="stylesheet" href="styles.css">', css_string
+        )
+
+        st.components.v1.html(
+            html_plus_css,
+            width=window_width,
+            height=window_width / 16 * 9,
+        )
+
+
+        st.subheader("Click the button below to get the code")
+        st.download_button(
+            label="Get Code",
+            data=open("my_website.zip", "rb").read(),
+            key="download_directory",
+            file_name="my_website.zip",
+        )
 
 
 if __name__ == "__main__":
