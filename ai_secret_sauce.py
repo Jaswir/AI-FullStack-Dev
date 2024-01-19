@@ -21,13 +21,15 @@ info_prompt = """What is inside of this image? You need to give me information
                 about colors, padding and layout, data inside table/elements, text in the image
 """
 
+info_prompt_0 = """What is inside of this image? You need to give me information 
+                             about colors, padding, data inside table, text in the image"""
+
 
 def getGPT4Response(image, prompt, option):
     if option == "Image URL":
         r1 = chatbotImageURL(
             image_url=image,
-            input="""What is inside of this image? You need to give me information 
-                             about colors, padding, data inside table, text in the image""",
+            input=info_prompt,
         )
         print("r1: " + r1)
         r2 = chatbotImageURL(image_url=image, input=prompt)
@@ -62,7 +64,7 @@ def getGeminiVisionResponse(image, prompt, option):
 
 
 def chatbotImageFromFilePath(input, file_path):
-    with open(file_path, "rb", encoding="utf8") as image_file:
+    with open(file_path, "rb") as image_file:
         image_bytes = image_file.read()
 
     global conversation
@@ -86,7 +88,7 @@ def chatbotImageFile(input, image_file):
     # Temporarily saves the file to directory and read in as bytes
     uploaded_file = image_file
     file_path = os.path.join("tmpDirUploadedImage", uploaded_file.name)
-    with open(file_path, "wb", encoding="utf8") as f:
+    with open(file_path, "wb") as f:
         f.write(uploaded_file.getbuffer())
 
     return chatbotImageFromFilePath(input, file_path)

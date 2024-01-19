@@ -1,99 +1,60 @@
 
-body, html {
-    margin: 0;
-    padding: 0;
+body {
     font-family: Arial, sans-serif;
-}
-
-.container {
-    background: linear-gradient(135deg, #6d5bba 0%, #8d58c1 100%);
-    color: white;
-    padding: 20px;
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-header {
-    display: flex;
-    justify-content: flex-end;
-    padding: 10px 0;
-}
-
-.contact-btn {
-    background-color: #554079;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-}
-
-.main {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.headline-container {
-    max-width: 50%;
-}
-
-h1 {
+    background-color: #f4f4f4;
     margin: 0;
-    font-size: 2.5em;
+    padding: 20px;
 }
 
-.subtext {
-    color: #e6e6e6;
+.table-container {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: auto;
 }
 
-.email-signup {
-    margin: 20px 0;
+h1, h2 {
+    text-align: center;
+    color: #333;
 }
 
-.email-signup input {
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th {
+    background-color: #6a1b9a;
+    color: #fff;
     padding: 10px;
-    margin-right: 10px;
-    border: none;
+    text-align: left;
 }
 
-.signup-btn {
-    background-color: #4caf50;
-    color: white;
+td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+button {
+    background-color: #6a1b9a;
+    color: #fff;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
-}
-
-.reviews {
-    font-size: 0.9em;
-}
-
-.stars {
-    color: #ffc107;
-}
-
-.review-count {
-    margin-left: 5px;
-}
-
-.hero-image {
-    background-color: #ff6f61;
-    padding: 30px;
-    border-radius: 20px;
     text-align: center;
 }
 
-@media (max-width: 768px) {
-    .main {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+button:hover {
+    background-color: #7c43bd;
+}
 
-    .headline-container {
-        max-width: 100%;
-    }
-
-    .hero-image {
-        margin-top: 20px;
+@media screen and (max-width: 600px) {
+    .table-container {
+        width: 100%;
+        margin: 0;
+        box-shadow: none;
+        padding: 10px;
     }
 }
