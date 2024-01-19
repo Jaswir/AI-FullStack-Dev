@@ -77,13 +77,15 @@ def main():
              
 
     # Add a button to run the script
+    llm = st.radio("LLM:", ("Gemini", "GPT-4"))
+
     if st.button("Build Website"):
         if not clarifai_pat:
             st.warning("Please enter your PAT to continue:", icon="⚠️")
         else:
             os.environ["CLARIFAI_PAT"] = clarifai_pat
-            llm = "Gemini"
 
+            
             if option == "Image URL":
                 image_to_code.buildWebsite(IMAGE_URL, option="Image URL", llm = llm)
                 st.session_state.has_download = True

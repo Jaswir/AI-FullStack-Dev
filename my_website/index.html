@@ -2,34 +2,89 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Wedding</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Table</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      text-align: center;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {background-color: #f2f2f2;}
+
+    th {
+      background-color: #444444;
+      color: white;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>The Perfect Wedding</h1>
-    </div>
-    <div class="navigation">
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-    </div>
-    <div class="main">
-      <div class="image">
-        <img src="placeholder.jpg">
-      </div>
-      <div class="text">
-        <h2>Your Perfect Day</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas euismod, ipsum eu ultricies ultricies, risus massa tincidunt ipsum, eu hendrerit massa tortor sit amet lectus. Fusce sed lectus sit amet nibh ultricies tempor. Nulla facilisi. Fusce aliquam risus sit amet sapien lobortis, eu hendrerit nibh ultricies. Nam tempor, ipsum ac tincidunt ultricies, ipsum ipsum ultrices lectus, eu hendrerit massa tortor sit amet lectus.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas euismod, ipsum eu ultricies ultricies, risus massa tincidunt ipsum, eu hendrerit massa tortor sit amet lectus. Fusce sed lectus sit amet nibh ultricies tempor. Nulla facilisi. Fusce aliquam risus sit amet sapien lobortis, eu hendrerit nibh ultricies. Nam tempor, ipsum ac tincidunt ultricies, ipsum ipsum ultrices lectus, eu hendrerit massa tortor sit amet lectus.</p>
-      </div>
-    </div>
-    <div class="footer">
-      <p>Copyright 2023 The Perfect Wedding</p>
-    </div>
-  </div>
+  <table>
+    <caption>Table</caption>
+    <thead>
+      <tr>
+        <th>TLD</th>
+        <th>Duration</th>
+        <th>Registration</th>
+        <th>Renewal</th>
+        <th>Transfer</th>
+        <th>Register</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>.com</td>
+        <td>1 year</td>
+        <td>$70.00</td>
+        <td>$5.00</td>
+        <td>$5.00</td>
+        <td><button>Sign Up</button></td>
+      </tr>
+      <tr>
+        <td>.net</td>
+        <td>1 year</td>
+        <td>$75.00</td>
+        <td>$5.00</td>
+        <td>$5.00</td>
+        <td><button>Sign Up</button></td>
+      </tr>
+      <tr>
+        <td>.org</td>
+        <td>1 year</td>
+        <td>$65.00</td>
+        <td>$5.00</td>
+        <td>$5.00</td>
+        <td><button>Sign Up</button></td>
+      </tr>
+      <tr>
+        <td>.biz</td>
+        <td>1 year</td>
+        <td>$60.00</td>
+        <td>$5.00</td>
+        <td>$5.00</td>
+        <td><button>Sign Up</button></td>
+      </tr>
+      <tr>
+        <td>.info</td>
+        <td>1 year</td>
+        <td>$50.00</td>
+        <td>$5.00</td>
+        <td>$5.00</td>
+        <td><button>Sign Up</button></td>
+      </tr>
+      <tr>
+        <td>.me</td>
+        <td>1 year</td>
+        <td>$45.00</td>
+        <td>$5.00</td>
+        <td>$5.00</td>
+        <td><button>Sign Up</button></td>
+      </tr>
+    </tbody>
+  </table>
 </body>
 </html>

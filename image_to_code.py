@@ -15,6 +15,7 @@ MAGENTA = "\033[95m"
 CYAN = "\033[96m"
 RESET = "\033[0m"  # Reset color to default
 
+
 # Extracts the part between ```html and ``` from raw chat gpt response
 def extractHTMLFromResponse(rawHTMLCSS):
     html_without_bullshit_above = rawHTMLCSS.split("```html")[1]
@@ -105,7 +106,11 @@ for a website that looks EXACTLY like the one in the image provided,
 styles.css, Make HTML, CSS code, and make sure to put the code inside 
 ```html and ```css tags MAKE SURE CSS INCLUDES HOVER EFFECTS, LEAVE IMAGES' SRC ATTRIBUTES (if there are any images) AS PLACEHOLDERS, DON'T LEAVE ANY OTHER PLACEHOLDERS, INCLUDE ALL THE TEXT AND DON'T LEAVE OUT ANYTHING, MAKE AN EXACT VERSION OF THE WEBSITE IN THE IMAGE PROVIDED. MAKE SURE NONE OF THE  CODES (HTML OR CSS) IS MISSING, MAKE SURE TO PROVIDE CSS CODE, MAKE SURE THERE IS CSS CODE FOR EVERY SINGLE PART AND ELEMENT OF THE WEBSITE, NEVER LEAVE ANY ELEMENT WITHOUT STYLE!!, MAKE SURE THE WEBSITE DESIGN IS PERFECTLY IDENTICAL WITH THE IMAGE PROVIDED, MAKE SURE THE CODE IS FULL,, INCLUDE CSS FOR NAVIGATION BAR ON TOP OF THE WEBSITE IF THERE'S ONE IN THE IMAGE"""
 
-prompt2 = 'write separate html and css code to make this'
+prompt2 = "write separate html and css code to make this given the desciption"
+
+prompt3 = """Describe the elements in this image, the positioning, give me all the texts for the elements, and the colours of each element,
+if there's a table provide me all the data that it contains in a json"""
+
 
 def buildWebsite(image, option, llm):
     print("Building website...")
@@ -113,9 +118,29 @@ def buildWebsite(image, option, llm):
     print("LLM: " + llm)
 
     if llm == "GPT-4":
-       response = ai_secret_sauce.getGPT4Response(image, prompt2, option)
+        response = ai_secret_sauce.getGPT4Response(image, prompt2, option)
 
     elif llm == "Gemini":
-        response = ai_secret_sauce.getGeminiVisionResponse(image, prompt, option)
+        geminiResponse = ai_secret_sauce.getGeminiVisionResponse(image, prompt3, option)
+
+        print(BLUE + "Gemini response: " + RESET + geminiResponse)
+
+        geminiResponse2 = ai_secret_sauce.getGeminiVisionResponse(
+            image=None, input=prompt2, option=option
+        )
+        response = geminiResponse2
 
     responseToCodeFiles(response)
+
+
+# geminiResponse = ai_secret_sauce.getGeminiVisionResponse(image, prompt, option)
+# print(BLUE + "Gemini response: " + RESET + geminiResponse)
+
+# colorfixed = ai_secret_sauce.chatbotImageURL(
+#     image_url=image,
+#     input="""fix the colors of the website to match colours in the image
+#     return the fixed html and css code for the website"""
+#     + geminiResponse,
+# )
+
+# response = colorfixed

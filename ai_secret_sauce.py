@@ -15,11 +15,16 @@ GOOGLE_API_KEY = st.secrets["GOOGLE_API_KEY"]
 
 inference_params = dict(temperature=0.2, max_tokens=250)
 conversation = ""
+gemini_conversation = []
 
 
 def getGPT4Response(image, prompt, option):
     if option == "Image URL":
-        r1 = chatbotImageURL(image_url=image, input="What is inside of this image?")
+        r1 = chatbotImageURL(
+            image_url=image,
+            input="""What is inside of this image? You need to give me information 
+                             about colors, padding, data inside table, text in the image""",
+        )
         print("r1: " + r1)
         r2 = chatbotImageURL(image_url=image, input=prompt)
 
@@ -37,8 +42,8 @@ def getGPT4Response(image, prompt, option):
 
     return r2
 
-def getGeminiVisionResponse(image, prompt, option):
 
+def getGeminiVisionResponse(image, prompt, option):
     if option == "Image URL":
         r1 = getGeminiVisionResponseImageURL(image_url=image, input=prompt)
 
@@ -50,6 +55,7 @@ def getGeminiVisionResponse(image, prompt, option):
         r1 = getGeminiVisionResponseImageFile(image_path=image, input=prompt)
 
     return r1
+
 
 def chatbotImageFromFilePath(input, file_path):
     with open(file_path, "rb") as image_file:
@@ -98,6 +104,7 @@ def chatbotImageURL(input, image_url):
     response = model_prediction.outputs[0].data.text.raw
     conversation += "assistant: " + response + "\n\n"
     return response
+
 
 def getGeminiVisionResponseImageFile(input, image_path):
     genai.configure(api_key=GOOGLE_API_KEY)
@@ -150,18 +157,28 @@ def getGeminiVisionResponseImageFile(input, image_path):
 def getGeminiVisionResponseImageURL(image_url, input):
     genai.configure(api_key=GOOGLE_API_KEY)
 
-    message = HumanMessage(
-        content=[
-            {
-                "type": "text",
-                "text": input,
-            },  # You can optionally provide text parts
+    global gemini_conversation
+
+    content = [
+        {
+            "type": "text",
+            "text": input,
+        }
+    ]
+
+    if image_url is not None:
+        image_content = (
             {
                 "type": "image_url",
                 "image_url": image_url,
             },
-        ]
-    )
+        )
+
+        content.append(image_content)
+
+    gemini_conversation.extend(content)
+
+    message = HumanMessage(content=gemini_conversation)
 
     llm = ChatGoogleGenerativeAI(
         model="gemini-pro-vision", temperature=0.4, max_output_tokens=4096
@@ -172,5 +189,11 @@ def getGeminiVisionResponseImageURL(image_url, input):
     text = str(response)
     text = text.split("content='")[1]
     text = text.encode().decode("unicode_escape")
+
+    gemini_response = {
+        "type": "text",
+        "text": text,
+    }
+    gemini_conversation.append(gemini_response)
 
     return text
