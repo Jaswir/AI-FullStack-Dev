@@ -1,64 +1,102 @@
 
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #333; /* Assuming a dark gray background */
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #6e44ff; /* Purple background */
 }
 
-.navbar {
-    display: flex;
-    align-items: center;
-    background-color: #444; /* A slightly lighter gray for the navbar */
-    padding: 10px;
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px;
+  color: white;
+  position: relative;
 }
 
-.hamburger-menu {
-    font-size: 24px;
-    color: white;
+header {
+  display: flex;
+  justify-content: flex-end;
 }
 
-.logo {
-    color: white;
-    margin-left: 10px;
+.contact-button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
 }
 
-.banner, .info, .features, .gallery, .contact-form {
-    color: white;
-    padding: 20px;
-    border-bottom: 1px solid #555; /* Assuming there's a separator */
+.main-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.feature-item {
-    background-color: #222; /* Assuming a darker background for feature items */
-    margin-bottom: 10px;
-    padding: 15px;
+.content {
+  width: 60%;
 }
 
-.gallery {
-    /* Placeholder for gallery styles */
+h1 {
+  margin: 0;
+  font-size: 2.5em;
 }
 
-.contact-form form {
-    display: flex;
-    flex-direction: column;
+.subheading {
+  margin: 10px 0;
+  color: #dcdcdc; /* Lighter text */
+  font-size: 18px;
 }
 
-.contact-form input, .contact-form textarea {
-    margin-bottom: 10px;
-    padding: 10px;
-    background-color: #222;
-    border: 1px solid #555;
-    color: white;
+.signup-form {
+  margin: 20px 0;
 }
 
-.contact-form button {
-    padding: 10px;
-    background-color: #f0b040; /* Assuming an orange color for the button */
-    color: white;
-    border: none;
+.signup-form input {
+  padding: 10px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 20px;
+  width: 60%;
 }
 
-/* Add media queries for responsiveness */
+.signup-button {
+  background-color: #311b92; /* Dark Purple */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+.reviews {
+  background-color: #311b92; /* Dark Purple */
+  display: inline-block;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.star-rating {
+  color: #ffd700; /* Star color */
+}
+
+.hero-image {
+  background-color: #ffa4a2; /* Coral color */
+  padding: 20px;
+  border-radius: 100px 16px; /* Approximation of the shape */
+  width: 30%;
+  text-align: center;
+  font-size: 18px;
+}
+
 @media (max-width: 768px) {
-    /* Adjust styles for mobile screens */
+  .main-content {
+    flex-direction: column;
+  }
+  .content, .hero-image {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+  }
 }

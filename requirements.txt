@@ -62,7 +62,6 @@ networkx==3.2.1
 nltk==3.8.1
 numpy==1.26.3
 openai==1.7.2
-opencv-python==4.9.0.80
 packaging==23.2
 pandas==2.1.4
 pillow==10.2.0
@@ -114,3 +113,5 @@ websocket-client==1.7.0
 wrapt==1.16.0
 yarl==1.9.4
 zipp==3.17.0
+opencv-python-headless
+scikit-learn
