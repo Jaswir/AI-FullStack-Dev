@@ -1,79 +1,94 @@
 
-body, html {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-}
-
-.container {
-  background-color: #5c54a4;
-  color: white;
-  padding: 20px;
-  height: 100vh;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #4b2995;
+    color: white;
+    margin: 0;
+    padding: 20px;
 }
 
 header {
-  display: flex;
-  justify-content: flex-end;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.contact-link {
-  text-decoration: none;
-  color: white;
+.hamburger-menu {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.contact-button {
+    border: 1px solid white;
+    background: none;
+    padding: 10px 20px;
+    cursor: pointer;
 }
 
 .hero-section {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 40px;
+    text-align: center;
+    padding: 50px;
 }
 
-.headline h1 {
-  font-size: 36px;
-  margin-bottom: 15px;
+h1 {
+    font-size: 2.5em;
 }
 
-.headline p {
-  font-size: 16px;
-  margin-bottom: 25px;
+.hero-section p {
+    margin-top: 10px;
+    color: #b3a2c7;
 }
 
-.email-signup input {
-  padding: 10px;
-  margin-right: 10px;
-  border: none;
-  border-radius: 5px;
+input[type="email"] {
+    margin-top: 20px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    width: 60%;
 }
 
-.email-signup button {
-  background-color: #ff6b6b;
-  border: none;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  font-weight: bold;
-  cursor: pointer;
+.sign-up-button {
+    background-color: #a4cc35;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.customer-reviews {
+    margin-top: 20px;
+    font-size: 0.8em;
 }
 
 .hero-image {
-  background-color: #ff6b6b;
-  padding: 20px;
-  border-radius: 20px;
-  text-align: center;
+    background-color: #f88379;
+    display: inline-block;
+    padding: 20px;
+    border-radius: 20px;
+    position: absolute;
+    top: 120px;
+    right: 50px;
 }
 
-.hero-image span {
-  font-size: 20px;
-  display: block;
+.hero-image small {
+    display: block;
+    margin-top: 10px;
+    color: white;
 }
 
-.reviews {
-  position: absolute;
-  bottom: 20px;
-  left: 40px;
-}
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 20px;
+    }
 
-.stars {
-  color: yellow;
+    .hero-image {
+        position: static;
+        margin: 20px auto;
+    }
+
+    input[type="email"] {
+        width: 80%;
+    }
 }

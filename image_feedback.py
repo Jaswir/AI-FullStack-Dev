@@ -10,12 +10,16 @@ GREEN = "\033[92m"
 YELLOW = "\033[93m"
 BLUE = "\033[94m"
 MAGENTA = "\033[95m"
-RESET = "\033[0m"  
+RESET = "\033[0m"
+
 
 def htmlToPNG():
     hti = Html2Image(output_path="./image_feedback")
     file_path_html = "./my_website/index.html"
-    hti.screenshot(html_file=file_path_html, save_as="output.png")
+    file_path_css = "./my_website/styles.css"
+    hti.screenshot(
+        html_file=file_path_html, css_file=file_path_css, save_as="output.png"
+    )
 
 
 def verticallyConcatImages():
@@ -48,11 +52,11 @@ def verticallyConcatImages():
     cv2.imwrite("./image_feedback/fin.png", final_image)
 
 
-def UseImageFeedbackToImproveCode():
-    
+def letGPT4EvaluateAndImproveItsWork():
     # Sets output Image
     htmlToPNG()
-    
+    verticallyConcatImages()
+
     current_code = image_to_code.getCode()
     feedback_prompt = """This image shows 2 images on top the input mockup of 
     a website and below the generated website. 
@@ -60,20 +64,16 @@ def UseImageFeedbackToImproveCode():
     and improve the code, here's the code: """
     get_code_prompt = """return full html and css code"""
 
-    image_file_path = "./fin.png"
-
+    image_file_path = "./image_feedback/fin.png"
 
     r1 = ai_secret_sauce.chatbotImageFromFilePath(
         file_path=image_file_path, input=feedback_prompt + current_code
     )
     print(MAGENTA + "r1: " + RESET + r1)
-    r2 = ai_secret_sauce.chatbotImageFromFilePath(file_path=image_file_path, input=get_code_prompt)
-
+    r2 = ai_secret_sauce.chatbotImageFromFilePath(
+        file_path=image_file_path, input=get_code_prompt
+    )
 
     print(YELLOW + "r2: " + RESET + r2)
 
     return r2
-
-
-
-

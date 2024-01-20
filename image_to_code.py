@@ -138,6 +138,9 @@ fill_data_prompt = """does the image contain a table? If so, put all of the data
     inside of this table inside of the following html code, give back 
     full html code inside ```html tag:"""
 
+gemini_just_improve = """improve this code give back 
+    full html code inside ```html tag:"""
+
 prompt5 = "improve this code return complete html and css code no placeholders"
 
 def buildWebsite(image, option, llm):
@@ -153,18 +156,18 @@ def buildWebsite(image, option, llm):
         # has_table_string = ai_secret_sauce.getGeminiVisionResponse(
         #     image, "does the image contain a table?", option
         # )
-        # has_table = not "No" in has_table_string
+        # has_table = not "No" in has_table_string or True
 
         # print("Processing layer to fill in data:", has_table)
 
-        # if has_table:
-        #     data_filled_in = ai_secret_sauce.getGeminiVisionResponse(
-        #         image, fill_data_prompt + response, option
-        #     )
+        if True:
+            data_filled_in = ai_secret_sauce.getGeminiVisionResponse(
+                image, gemini_just_improve + response, option
+            )
 
-        #     updateCodeFiles(data_filled_in)
+            updateCodeFiles(data_filled_in)
 
-        feedback = image_feedback.UseImageFeedbackToImproveCode()
+        feedback = image_feedback.letGPT4EvaluateAndImproveItsWork()
         updateCodeFiles(feedback)
 
     elif llm == "Gemini":
