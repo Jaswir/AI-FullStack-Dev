@@ -22,25 +22,25 @@ info_prompt = """What is inside of this image? You need to give me information
 """
 
 info_prompt_0 = """What is inside of this image? You need to give me information 
-                             about colors, padding, data inside table, text in the image"""
+                             about colors, padding, navigation bar/hamburger menu, data inside table, text in the image"""
 
 
 def getGPT4VisionResponse(image, prompt, option):
     if option == "Image URL":
         r1 = chatbotImageURL(
             image_url=image,
-            input=info_prompt,
+            input=info_prompt_0,
         )
         print("r1: " + r1)
         r2 = chatbotImageURL(image_url=image, input=prompt)
 
     elif option == "Upload Image":
-        r1 = chatbotImageFile(image_file=image, input=info_prompt)
+        r1 = chatbotImageFile(image_file=image, input=info_prompt_0)
         print("r1: " + r1)
         r2 = chatbotImageFile(image_file=image, input=prompt)
 
     elif option == "Write Script":
-        r1 = chatbotImageFromFilePath(file_path=image, input=info_prompt)
+        r1 = chatbotImageFromFilePath(file_path=image, input=info_prompt_0)
         print("r1: " + r1)
         r2 = chatbotImageFromFilePath(file_path=image, input=prompt)
 

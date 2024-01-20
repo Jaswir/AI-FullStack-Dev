@@ -1,26 +1,114 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web Page Design</title>
+<style>
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    background-color: #5c4b99; /* Dark purple background */
+    color: white;
+    height: 100%;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+}
+
+.contact-button {
+    background-color: transparent;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-section {
+    background-color: #5c4b99;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.text-content {
+    max-width: 50%;
+}
+
+.hero-image {
+    background-color: coral;
+    padding: 30px;
+    border-radius: 50%;
+}
+
+.sign-up-button {
+    background-color: #5c4b99;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.reviews-section {
+    margin-top: 20px;
+}
+
+.ratings span {
+    color: yellowgreen; /* Star ratings color */
+}
+
+input[type="email"] {
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+}
+</style>
 </head>
 <body>
 
-<div class="navbar">
-    <!-- <div class="menu-toggle" onclick="toggleMenu()">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-    </div> -->
-    <ul class="menu">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Services</a></li>
-        <li><a href="#">Portfolio</a></li>
-        <li><a href="#">Contact</a></li>
-    </ul>
+<div class="container">
+    <header class="header">
+        <button class="contact-button">Contact</button>
+    </header>
+    <main class="main-content">
+        <section class="hero-section">
+            <div class="text-content">
+                <h1>A Thought-Provoking Headline</h1>
+                <p>A quick value proposition that will make your visitors want to click on or sign up for your offer.</p>
+                <input type="email" placeholder="Insert email address">
+                <button class="sign-up-button">Sign Up</button>
+            </div>
+            <div class="hero-image">
+                <span>Hero Image</span>
+                <p>that highlights your product or its value.</p>
+            </div>
+        </section>
+        <section class="reviews-section">
+            <h2>Our Happy Customers</h2>
+            <div class="ratings">
+                <span>⭐⭐⭐⭐⭐</span>
+                <p>4.5/5 (100% Reviews)</p>
+            </div>
+        </section>
+    </main>
 </div>
-
-<script src="script.js"></script>
 
 </body>
 </html>

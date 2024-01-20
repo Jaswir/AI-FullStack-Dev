@@ -1,48 +1,75 @@
-body {
+
+body, html {
+    height: 100%;
     margin: 0;
-    padding: 0;
     font-family: Arial, sans-serif;
 }
 
-.navbar {
-    background-color: #333;
-    overflow: hidden;
+.container {
+    background-color: #5c4b99; /* Dark purple background */
+    color: white;
+    height: 100%;
+    padding: 20px;
 }
 
-.menu-toggle {
-    display: none;
-    cursor: pointer;
+.header {
+    display: flex;
+    justify-content: flex-end;
     padding: 10px;
 }
 
-.bar {
-    width: 25px;
-    height: 3px;
-    background-color: white;
-    margin: 4px 0;
-    transition: 0.4s;
-}
-
-.menu {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-}
-
-.menu li {
-    float: left;
-}
-
-.menu li a {
-    display: block;
+.contact-button {
+    background-color: transparent;
     color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
+    border: none;
+    cursor: pointer;
 }
 
-.menu li a:hover {
-    background-color: #ddd;
-    color: black;
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-section {
+    background-color: #5c4b99;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.text-content {
+    max-width: 50%;
+}
+
+.hero-image {
+    background-color: coral;
+    padding: 30px;
+    border-radius: 50%;
+}
+
+.sign-up-button {
+    background-color: white;
+    color: #5c4b99;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.reviews-section {
+    margin-top: 20px;
+}
+
+.ratings span {
+    color: yellowgreen; /* Star ratings color */
+}
+
+input[type="email"] {
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
 }
