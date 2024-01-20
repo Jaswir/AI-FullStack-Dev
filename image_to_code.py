@@ -167,8 +167,8 @@ def buildWebsite(image, option, llm):
 
             updateCodeFiles(data_filled_in)
 
-        feedback = image_feedback.letGPT4EvaluateAndImproveItsWork()
-        updateCodeFiles(feedback)
+        # feedback = image_feedback.letGPT4EvaluateAndImproveItsWork()
+        # updateCodeFiles(feedback)
 
     elif llm == "Gemini":
         geminiResponse = ai_secret_sauce.getGeminiVisionResponse(image, prompt, option)
