@@ -78,8 +78,7 @@ def main():
             )
 
     # Developer options
-    if hostname == "localhost":
-        llm = st.radio("LLM:", ("GPT-4", "Gemini"))
+    llm = st.radio("LLM:", ("GPT-4", "Gemini"))
 
     if st.button("Build Website"):
         if not clarifai_pat:
