@@ -1,94 +1,64 @@
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #4b2995;
-    color: white;
     margin: 0;
-    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #333; /* Assuming a dark gray background */
 }
 
-header {
+.navbar {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    background-color: #444; /* A slightly lighter gray for the navbar */
+    padding: 10px;
 }
 
 .hamburger-menu {
     font-size: 24px;
-    cursor: pointer;
-}
-
-.contact-button {
-    border: 1px solid white;
-    background: none;
-    padding: 10px 20px;
-    cursor: pointer;
-}
-
-.hero-section {
-    text-align: center;
-    padding: 50px;
-}
-
-h1 {
-    font-size: 2.5em;
-}
-
-.hero-section p {
-    margin-top: 10px;
-    color: #b3a2c7;
-}
-
-input[type="email"] {
-    margin-top: 20px;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    width: 60%;
-}
-
-.sign-up-button {
-    background-color: #a4cc35;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    margin-top: 10px;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-
-.customer-reviews {
-    margin-top: 20px;
-    font-size: 0.8em;
-}
-
-.hero-image {
-    background-color: #f88379;
-    display: inline-block;
-    padding: 20px;
-    border-radius: 20px;
-    position: absolute;
-    top: 120px;
-    right: 50px;
-}
-
-.hero-image small {
-    display: block;
-    margin-top: 10px;
     color: white;
 }
 
+.logo {
+    color: white;
+    margin-left: 10px;
+}
+
+.banner, .info, .features, .gallery, .contact-form {
+    color: white;
+    padding: 20px;
+    border-bottom: 1px solid #555; /* Assuming there's a separator */
+}
+
+.feature-item {
+    background-color: #222; /* Assuming a darker background for feature items */
+    margin-bottom: 10px;
+    padding: 15px;
+}
+
+.gallery {
+    /* Placeholder for gallery styles */
+}
+
+.contact-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-form input, .contact-form textarea {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #222;
+    border: 1px solid #555;
+    color: white;
+}
+
+.contact-form button {
+    padding: 10px;
+    background-color: #f0b040; /* Assuming an orange color for the button */
+    color: white;
+    border: none;
+}
+
+/* Add media queries for responsiveness */
 @media (max-width: 768px) {
-    .hero-section {
-        padding: 20px;
-    }
-
-    .hero-image {
-        position: static;
-        margin: 20px auto;
-    }
-
-    input[type="email"] {
-        width: 80%;
-    }
+    /* Adjust styles for mobile screens */
 }
