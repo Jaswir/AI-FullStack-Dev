@@ -1,86 +1,66 @@
 
-body, html {
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
     margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-}
-
-.container {
+    padding: 20px;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     height: 100vh;
-    background-color: #5e3a96;
 }
 
-header {
+.pricing-table {
+    background-color: #ffffff;
     padding: 20px;
-    text-align: right;
-    background-color: #5e3a96;
-}
-
-.contact-link {
-    color: white;
-    text-decoration: none;
-}
-
-main {
-    display: flex;
-    flex-grow: 1;
-    padding: 20px;
-}
-
-.content {
-    flex: 1;
-    color: white;
-}
-
-h1 {
-    margin-top: 0;
-}
-
-form {
-    margin: 20px 0;
-}
-
-input[type="email"] {
-    padding: 10px;
-    margin-right: 10px;
-    border: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
+    max-width: 800px;
+    width: 100%;
 }
 
-button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: coral;
-    color: white;
-    cursor: pointer;
-}
-
-.customer-satisfaction {
-    margin-top: 20px;
-}
-
-.rating {
-    color: yellow;
-}
-
-.hero-image {
-    max-width: 300px;
-    margin-left: 20px;
-    background-color: pink;
-    padding: 20px;
-    border-radius: 50%;
+.pricing-table h1,
+.pricing-table h2 {
     text-align: center;
-    color: #5e3a96;
 }
 
-@media (max-width: 768px) {
-    main {
-        flex-direction: column;
-    }
-    .hero-image {
-        margin: 20px 0;
-    }
+.pricing-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.pricing-table thead {
+    background-color: #6a1b9a;
+    color: #ffffff;
+}
+
+.pricing-table th,
+.pricing-table td {
+    text-align: left;
+    padding: 10px;
+    border: none;
+}
+
+.pricing-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.pricing-table td {
+    vertical-align: middle;
+}
+
+.pricing-table button {
+    background-color: #6a1b9a;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.pricing-table button:hover {
+    background-color: #7e57c2;
 }
