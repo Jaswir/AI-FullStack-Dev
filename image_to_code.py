@@ -2,8 +2,10 @@ import zipfile
 import os
 import requests
 from io import BytesIO
+import re
 
 import ai_secret_sauce
+import image_feedback
 
 
 # ANSI escape codes for text colors when using print()
@@ -98,14 +100,24 @@ def zipCodeFiles():
 
     return zip_file_name
 
+def getCode():
+    file_path_html = "./my_website/index.html"
+    file_path_css = "./my_website/styles.css"
 
-# https://colorlib.com/wp/wp-content/uploads/sites/2/table-03.jpg
+    with open(file_path_html, "r", encoding="utf8") as file:
+        html_string = file.read()
+
+    with open(file_path_css, "r", encoding="utf8") as file:
+        css_string = "<style>" + file.read() + "</style>"
+
+    html_plus_css = re.sub(r"<link.*?css.*?>", css_string, html_string)
+    return html_plus_css
 
 
 # Helper function for displaying image from url in streamlit
 def get_image_from_url(image_url):
     r = requests.get(image_url)
-    return BytesIO(r.content)
+    return r.content
 
 
 prompt = """Generate code (HTML FULL CODE, CSS FULL CODE) 
@@ -138,19 +150,22 @@ def buildWebsite(image, option, llm):
         updateCodeFiles(response)
 
         # Input data inside of the tables correctly.
-        has_table_string = ai_secret_sauce.getGeminiVisionResponse(
-            image, "does the image contain a table?", option
-        )
-        has_table = not "No" in has_table_string
+        # has_table_string = ai_secret_sauce.getGeminiVisionResponse(
+        #     image, "does the image contain a table?", option
+        # )
+        # has_table = not "No" in has_table_string
 
-        print("Processing layer to fill in data:", has_table)
+        # print("Processing layer to fill in data:", has_table)
 
-        if has_table:
-            data_filled_in = ai_secret_sauce.getGeminiVisionResponse(
-                image, fill_data_prompt + response, option
-            )
+        # if has_table:
+        #     data_filled_in = ai_secret_sauce.getGeminiVisionResponse(
+        #         image, fill_data_prompt + response, option
+        #     )
 
-            updateCodeFiles(data_filled_in)
+        #     updateCodeFiles(data_filled_in)
+
+        feedback = image_feedback.UseImageFeedbackToImproveCode()
+        updateCodeFiles(feedback)
 
     elif llm == "Gemini":
         geminiResponse = ai_secret_sauce.getGeminiVisionResponse(image, prompt, option)

@@ -24,26 +24,29 @@ info_prompt = """What is inside of this image? You need to give me information
 info_prompt_0 = """What is inside of this image? You need to give me information 
                              about colors, padding, navigation bar/hamburger menu, data inside table, text in the image"""
 
+info_prompt_1 = """What is inside of this image? You need to give me information 
+                             about colors, padding, navigation bar/hamburger menu, data inside table, text/textsize in the image"""
 
 def getGPT4VisionResponse(image, prompt, option):
+
+    used_info_prompt = info_prompt_1
     if option == "Image URL":
         r1 = chatbotImageURL(
             image_url=image,
-            input=info_prompt_0,
+            input=used_info_prompt,
         )
         print("r1: " + r1)
         r2 = chatbotImageURL(image_url=image, input=prompt)
 
     elif option == "Upload Image":
-        r1 = chatbotImageFile(image_file=image, input=info_prompt_0)
+        r1 = chatbotImageFile(image_file=image, input=used_info_prompt)
         print("r1: " + r1)
         r2 = chatbotImageFile(image_file=image, input=prompt)
 
     elif option == "Write Script":
-        r1 = chatbotImageFromFilePath(file_path=image, input=info_prompt_0)
+        r1 = chatbotImageFromFilePath(file_path=image, input=used_info_prompt)
         print("r1: " + r1)
         r2 = chatbotImageFromFilePath(file_path=image, input=prompt)
-
     return r2
 
 
@@ -86,10 +89,18 @@ def chatbotImageFile(input, image_file):
     with open(file_path, "wb") as f:
         f.write(uploaded_file.getbuffer())
 
+    with open('./image_feedback/input_mock_website', "wb") as f:
+        f.write(uploaded_file.getbuffer())
+
+
     return chatbotImageFromFilePath(input, file_path)
 
 
 def chatbotImageURL(input, image_url):
+    image_bytes = image_to_code.get_image_from_url(image_url)
+    with open('./image_feedback/input_mock_website.png', "wb") as f:
+        f.write(image_bytes)
+
     global conversation
     conversation += "user: " + input + "\n\n"
     model_prediction = Model(

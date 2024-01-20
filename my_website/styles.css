@@ -1,75 +1,79 @@
 
 body, html {
-    height: 100%;
-    margin: 0;
-    font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
 }
 
 .container {
-    background-color: #5c4b99; /* Dark purple background */
-    color: white;
-    height: 100%;
-    padding: 20px;
+  background-color: #5c54a4;
+  color: white;
+  padding: 20px;
+  height: 100vh;
 }
 
-.header {
-    display: flex;
-    justify-content: flex-end;
-    padding: 10px;
+header {
+  display: flex;
+  justify-content: flex-end;
 }
 
-.contact-button {
-    background-color: transparent;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-.main-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+.contact-link {
+  text-decoration: none;
+  color: white;
 }
 
 .hero-section {
-    background-color: #5c4b99;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px;
 }
 
-.text-content {
-    max-width: 50%;
+.headline h1 {
+  font-size: 36px;
+  margin-bottom: 15px;
+}
+
+.headline p {
+  font-size: 16px;
+  margin-bottom: 25px;
+}
+
+.email-signup input {
+  padding: 10px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+.email-signup button {
+  background-color: #ff6b6b;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .hero-image {
-    background-color: coral;
-    padding: 30px;
-    border-radius: 50%;
+  background-color: #ff6b6b;
+  padding: 20px;
+  border-radius: 20px;
+  text-align: center;
 }
 
-.sign-up-button {
-    background-color: white;
-    color: #5c4b99;
-    border: none;
-    padding: 10px 20px;
-    margin-top: 10px;
-    cursor: pointer;
+.hero-image span {
+  font-size: 20px;
+  display: block;
 }
 
-.reviews-section {
-    margin-top: 20px;
+.reviews {
+  position: absolute;
+  bottom: 20px;
+  left: 40px;
 }
 
-.ratings span {
-    color: yellowgreen; /* Star ratings color */
-}
-
-input[type="email"] {
-    padding: 10px;
-    margin-top: 10px;
-    border: none;
-    border-radius: 5px;
+.stars {
+  color: yellow;
 }

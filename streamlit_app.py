@@ -3,6 +3,7 @@ import streamlit as st
 from streamlit_javascript import st_javascript
 from PIL import Image
 import re
+from io import BytesIO
 
 import image_to_code
 import script_to_image
@@ -42,7 +43,7 @@ def main():
             "https://static.semrush.com/blog/uploads/media/ed/9b/ed9b42a338de806621bdaf70293c2e7e/original.png",
         )
         if IMAGE_URL is not None:
-            st.image(image_to_code.get_image_from_url(IMAGE_URL), width=700)
+            st.image(BytesIO(image_to_code.get_image_from_url(IMAGE_URL)), width=700)
 
     elif option == "Upload Image":
         IMAGE_FILE = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
