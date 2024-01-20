@@ -6,4 +6,3 @@ def htmlToPNG():
     file_path_html = "./my_website/index.html"
     hti.screenshot(html_file=file_path_html, save_as="output.png")
 
-htmlToPNG() 

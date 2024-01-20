@@ -1,145 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-<viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pricing Table</title>
-  <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      background-color: #8b00ff;
-      margin: 0;
-      padding: 20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-
-    .pricing-table {
-      background-color: #ffffff;
-      padding: 20px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      border-radius: 5px;
-      max-width: 800px;
-      width: 100%;
-    }
-
-    .pricing-table h1,
-    .pricing-table h2 {
-      text-align: center;
-    }
-
-    .pricing-table table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 15px;
-    }
-
-    .pricing-table thead {
-      background-color: #6a1b9a;
-      color: #ffffff;
-    }
-
-    .pricing-table th,
-    .pricing-table td {
-      text-align: left;
-      padding: 10px;
-      border: none;
-    }
-
-    .pricing-table tbody tr:nth-child(even) {
-      background-color: #f2f2f2;
-    }
-
-    .pricing-table td {
-      vertical-align: middle;
-    }
-
-    .pricing-table button {
-      background-color: #6a1b9a;
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      cursor: pointer;
-      border-radius: 3px;
-      text-transform: uppercase;
-      font-weight: bold;
-    }
-
-    .pricing-table button:hover {
-      background-color: #7e57c2;
-    }
-  </style>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
-
 <body>
-  <div class="pricing-table">
-    <h1>Table #03</h1>
-    <h2>Create Your Domain Name</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>TLD</th>
-          <th>Duration</th>
-          <th>Registration</th>
-          <th>Renewal</th>
-          <th>Transfer</th>
-          <th>Register</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>.com</td>
-          <td>1 Year</td>
-          <td>$70.00</td>
-          <td>$5.00</td>
-          <td>$5.00</td>
-          <td><button>Sign Up</button></td>
-        </tr>
-        <tr>
-          <td>.net</td>
-          <td>1 Year</td>
-          <td>$75.00</td>
-          <td>$5.00</td>
-          <td>$5.00</td>
-          <td><button>Sign Up</button></td>
-        </tr>
-        <tr>
-          <td>.org</td>
-          <td>1 Year</td>
-          <td>$65.00</td>
-          <td>$5.00</td>
-          <td>$5.00</td>
-          <td><button>Sign Up</button></td>
-        </tr>
-        <tr>
-          <td>.biz</td>
-          <td>1 Year</td>
-          <td>$60.00</td>
-          <td>$5.00</td>
-          <td>$5.00</td>
-          <td><button>Sign Up</button></td>
-        </tr>
-        <tr>
-          <td>.info</td>
-          <td>1 Year</td>
-          <td>$50.00</td>
-          <td>$5.00</td>
-          <td>$5.00</td>
-          <td><button>Sign Up</button></td>
-        </tr>
-        <tr>
-          <td>.me</td>
-          <td>1 Year</td>
-          <td>$45.00</td>
-          <td>$5.00</td>
-          <td>$5.00</td>
-          <td><button>Sign Up</button></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</body>
 
+<div class="navbar">
+    <!-- <div class="menu-toggle" onclick="toggleMenu()">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div> -->
+    <ul class="menu">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Portfolio</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+</div>
+
+<script src="script.js"></script>
+
+</body>
 </html>

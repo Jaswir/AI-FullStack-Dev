@@ -194,7 +194,12 @@ def getGeminiVisionResponseImageURL(image_url, input):
     message = HumanMessage(content=gemini_conversation)
 
     llm = ChatGoogleGenerativeAI(
-        model="gemini-pro-vision", temperature=0.4, max_output_tokens=4096
+        model="gemini-pro-vision",
+        temperature=0.2,
+        max_output_tokens=2048,
+        top_k=50,
+        top_p=0.95,
+        request_timeout=120,
     )
     print("Generating response...")
     response = llm.invoke([message])
@@ -214,7 +219,7 @@ def getGeminiVisionResponseImageURL(image_url, input):
 
 def getGeminiResponse(input):
     gemini_inference_params = dict(
-        temperature=0.2, top_k=50, top_p=0.95, max_tokens=4096
+        temperature=0.2, top_k=50, top_p=0.95, max_tokens=2048
     )
     # Model Predict
     model_prediction = Model(

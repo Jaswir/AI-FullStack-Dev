@@ -2,6 +2,7 @@ import os
 import streamlit as st
 from streamlit_javascript import st_javascript
 from PIL import Image
+import re
 
 import image_to_code
 import script_to_image
@@ -107,8 +108,6 @@ def main():
                 else:
                     st.warning("Please generate an image to continue:", icon="⚠️")
 
-
-
     if st.session_state.improved == False:
         user_feedback = st.text_area(
             label="Improve website:",
@@ -125,8 +124,6 @@ def main():
             else:
                 st.warning("No text inserted", icon="⚠️")
 
-
-    
     file_path_html = "./my_website/index.html"
     file_path_css = "./my_website/styles.css"
 
@@ -135,16 +132,13 @@ def main():
     with open(file_path_css, "r", encoding="utf8") as file:
         css_string = "<style>" + file.read() + "</style>"
 
-    html_plus_css = html_string.replace(
-        '<link rel="stylesheet" href="styles.css">', css_string
-    )
+    html_plus_css = re.sub(r"<link.*?css.*?>", css_string, html_string)
 
     st.components.v1.html(
         html_plus_css,
         width=window_width,
         height=window_width / 16 * 9,
     )
-
 
     st.subheader("Click the button below to get the code")
     st.download_button(

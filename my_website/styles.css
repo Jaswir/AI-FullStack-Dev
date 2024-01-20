@@ -1,66 +1,48 @@
-
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f0f0f0;
     margin: 0;
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    padding: 0;
+    font-family: Arial, sans-serif;
 }
 
-.pricing-table {
-    background-color: #ffffff;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    max-width: 800px;
-    width: 100%;
+.navbar {
+    background-color: #333;
+    overflow: hidden;
 }
 
-.pricing-table h1,
-.pricing-table h2 {
-    text-align: center;
-}
-
-.pricing-table table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
-}
-
-.pricing-table thead {
-    background-color: #6a1b9a;
-    color: #ffffff;
-}
-
-.pricing-table th,
-.pricing-table td {
-    text-align: left;
-    padding: 10px;
-    border: none;
-}
-
-.pricing-table tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-.pricing-table td {
-    vertical-align: middle;
-}
-
-.pricing-table button {
-    background-color: #6a1b9a;
-    color: white;
-    border: none;
-    padding: 10px 15px;
+.menu-toggle {
+    display: none;
     cursor: pointer;
-    border-radius: 3px;
-    text-transform: uppercase;
-    font-weight: bold;
+    padding: 10px;
 }
 
-.pricing-table button:hover {
-    background-color: #7e57c2;
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 4px 0;
+    transition: 0.4s;
+}
+
+.menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.menu li {
+    float: left;
+}
+
+.menu li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.menu li a:hover {
+    background-color: #ddd;
+    color: black;
 }

@@ -126,6 +126,7 @@ fill_data_prompt = """does the image contain a table? If so, put all of the data
     inside of this table inside of the following html code, give back 
     full html code inside ```html tag:"""
 
+prompt5 = "improve this code return complete html and css code no placeholders"
 
 def buildWebsite(image, option, llm):
     print("Building website...")
@@ -137,7 +138,6 @@ def buildWebsite(image, option, llm):
         updateCodeFiles(response)
 
         # Input data inside of the tables correctly.
-
         has_table_string = ai_secret_sauce.getGeminiVisionResponse(
             image, "does the image contain a table?", option
         )
@@ -154,7 +154,9 @@ def buildWebsite(image, option, llm):
 
     elif llm == "Gemini":
         geminiResponse = ai_secret_sauce.getGeminiVisionResponse(image, prompt, option)
-        response = geminiResponse
+        updateCodeFiles(geminiResponse)
+        response = ai_secret_sauce.getGPT4VisionResponse(image, prompt5 + geminiResponse, option)
+
         updateCodeFiles(response)
 
     zipCodeFiles()
