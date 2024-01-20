@@ -126,19 +126,20 @@ def main():
 
     file_path_html = "./my_website/index.html"
     file_path_css = "./my_website/styles.css"
+    
+    if os.path.exists(file_path_html) and os.path.exists(file_path_css):
+        with open(file_path_html, "r", encoding="utf8") as file:
+            html_string = file.read()
+        with open(file_path_css, "r", encoding="utf8") as file:
+            css_string = "<style>" + file.read() + "</style>"
 
-    with open(file_path_html, "r", encoding="utf8") as file:
-        html_string = file.read()
-    with open(file_path_css, "r", encoding="utf8") as file:
-        css_string = "<style>" + file.read() + "</style>"
+        html_plus_css = re.sub(r"<link.*?css.*?>", css_string, html_string)
 
-    html_plus_css = re.sub(r"<link.*?css.*?>", css_string, html_string)
-
-    st.components.v1.html(
-        html_plus_css,
-        width=window_width,
-        height=window_width / 16 * 9,
-    )
+        st.components.v1.html(
+            html_plus_css,
+            width=window_width,
+            height=window_width / 16 * 9,
+        )
 
     st.subheader("Click the button below to get the code")
     st.download_button(
