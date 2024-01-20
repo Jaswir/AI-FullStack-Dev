@@ -148,6 +148,9 @@ def main():
         file_name="my_website.zip",
     )
 
+    if os.path.exists('./image_feedback/output.png'):
+        st.image('./image_feedback/output.png', width=700)
+
 
 if __name__ == "__main__":
     main()
