@@ -13,13 +13,13 @@ MAGENTA = "\033[95m"
 RESET = "\033[0m"
 
 
-# def htmlToPNG():
-#     hti = Html2Image(output_path="./image_feedback")
-#     file_path_html = "./my_website/index.html"
-#     file_path_css = "./my_website/styles.css"
-#     hti.screenshot(
-#         html_file=file_path_html, css_file=file_path_css, save_as="output.png"
-#     )
+def htmlToPNG():
+    hti = Html2Image(output_path="./image_feedback")
+    file_path_html = "./my_website/index.html"
+    file_path_css = "./my_website/styles.css"
+    hti.screenshot(
+        html_file=file_path_html, css_file=file_path_css, save_as="output.png"
+    )
 
 
 def verticallyConcatImages():
@@ -54,7 +54,7 @@ def verticallyConcatImages():
 
 def letGPT4EvaluateAndImproveItsWork():
     # Sets output Image
-    # htmlToPNG()
+    htmlToPNG()
     verticallyConcatImages()
 
     current_code = image_to_code.getCode()
