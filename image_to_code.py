@@ -20,6 +20,14 @@ RESET = "\033[0m"  # Reset color to default
 
 # Extracts the part between ```html and ``` from raw chat gpt response
 def extractHTMLFromResponse(rawHTMLCSS):
+    if "```html" not in rawHTMLCSS:
+        return """
+        <!DOCTYPE html>
+        <html>
+        <p>Oops something went wrong with code generation, please try again!</p>
+        </html>
+    """
+
     html_without_bullshit_above = rawHTMLCSS.split("<!DOCTYPE html>")[1]
     html = html_without_bullshit_above.split("</html>")[0]
     html = "<!DOCTYPE html>" + html + "</html>"
@@ -100,6 +108,7 @@ def zipCodeFiles():
 
     return zip_file_name
 
+
 def getCode():
     file_path_html = "./my_website/index.html"
     file_path_css = "./my_website/styles.css"
@@ -143,6 +152,7 @@ gemini_just_improve = """improve this code give back
 
 prompt5 = "improve this code return complete html and css code no placeholders"
 
+
 def buildWebsite(image, option, llm):
     print("Building website...")
     print("Option: " + option)
@@ -173,7 +183,9 @@ def buildWebsite(image, option, llm):
     elif llm == "Gemini":
         geminiResponse = ai_secret_sauce.getGeminiVisionResponse(image, prompt, option)
         updateCodeFiles(geminiResponse)
-        response = ai_secret_sauce.getGPT4VisionResponse(image, prompt5 + geminiResponse, option)
+        response = ai_secret_sauce.getGPT4VisionResponse(
+            image, prompt5 + geminiResponse, option
+        )
 
         updateCodeFiles(response)
 
@@ -195,9 +207,10 @@ def improveWebsite(prompt):
 
     code = html_string.replace('<link rel="stylesheet" href="styles.css">', css_string)
 
-   
-    input = prompt + """, improve this code: """ + code 
+    input = prompt + """, improve this code: """ + code
     response = ai_secret_sauce.getGeminiResponse(input)
 
     updateCodeFiles(response)
     zipCodeFiles()
+
+    return
