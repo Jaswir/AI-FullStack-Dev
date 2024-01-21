@@ -89,7 +89,7 @@ def replace_img_srcs(html_str):
 
     for img_tag in img_tags:
         src = img_tag['src']
-        img_tag['src'] = '/app/static/' + src
+        img_tag['src'] = './app/static/' + src
 
     modified_html = str(soup)
 
