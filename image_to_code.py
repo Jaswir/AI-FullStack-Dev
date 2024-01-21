@@ -6,6 +6,7 @@ import re
 
 import ai_secret_sauce
 import image_feedback
+import html_image_filler
 
 
 # ANSI escape codes for text colors when using print()
@@ -192,6 +193,9 @@ def buildWebsite(image, option, llm):
 
         feedback = image_feedback.letGPT4EvaluateAndImproveItsWork()
         updateCodeFiles(feedback)
+
+        html_image_filler.fillHTMLImages(getHTMLCode())
+      
 
     elif llm == "Gemini":
         geminiResponse = ai_secret_sauce.getGeminiVisionResponse(image, prompt, option)

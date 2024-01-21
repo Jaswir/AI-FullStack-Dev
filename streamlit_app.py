@@ -8,6 +8,36 @@ from io import BytesIO
 import image_to_code
 import script_to_image
 
+import streamlit as st
+
+
+# code = """
+# <!DOCTYPE html>
+
+# <html lang="en">
+# <head>
+# <meta charset="utf-8"/>
+# <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+# <title>Image Descriptions</title>
+# </head>
+# <body>
+# <h1>Image Gallery</h1>
+# <img alt="A cute cat playing with a ball of yarn" src="/app/static/cat.jpg"/>
+# <img alt="A beautiful landscape with mountains and a lake" src="/app/static/landscape.jpg"/>
+# <img alt="A person coding on a laptop with lines of code on the screen" src="/app/static/coding.jpg"/>
+# <img alt="Delicious food spread with a variety of dishes" src="/app/static/food.jpg"/>
+# <img alt="Adventurous travel scene with a backpack and hiking gear" src="/app/static/travel.jpg"/>
+# <p>Explore the images above for a delightful experience!</p>
+# </body>
+# </html>
+# """
+
+
+# st.components.v1.html(
+#     code,
+#     width=1920,
+#     height=1920 / 16 * 9,
+# )
 
 if "has_download" not in st.session_state:
     st.session_state.has_download = False
@@ -110,7 +140,7 @@ def main():
 
     file_path_html = "./my_website/index.html"
     file_path_css = "./my_website/styles.css"
-    
+
     if os.path.exists(file_path_html) and os.path.exists(file_path_css):
         with open(file_path_html, "r", encoding="utf8") as file:
             html_string = file.read()
