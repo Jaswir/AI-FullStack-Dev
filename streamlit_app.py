@@ -108,22 +108,6 @@ def main():
                 else:
                     st.warning("Please generate an image to continue:", icon="⚠️")
 
-    if st.session_state.improved == False:
-        user_feedback = st.text_area(
-            label="Improve website:",
-            label_visibility="hidden",
-            placeholder="insert website improvements",
-            height=200,
-        )
-
-        if st.button("Improve Website"):
-            if user_feedback:
-                image_to_code.improveWebsite(user_feedback)
-                st.session_state.improved = True
-
-            else:
-                st.warning("No text inserted", icon="⚠️")
-
     file_path_html = "./my_website/index.html"
     file_path_css = "./my_website/styles.css"
     
@@ -140,6 +124,22 @@ def main():
             width=window_width,
             height=window_width / 16 * 9,
         )
+
+        user_feedback = st.text_area(
+            label="Improve website:",
+            label_visibility="hidden",
+            placeholder="insert website improvements",
+            height=200,
+        )
+
+        if st.button("Improve Website"):
+            if user_feedback:
+                image_to_code.improveWebsite(user_feedback)
+                st.warning("Website improved successfully! Refresh page to see the result", icon="🎉")
+
+            else:
+                st.warning("No text inserted", icon="⚠️")
+
 
     st.subheader("Click the button below to get the code")
     st.download_button(

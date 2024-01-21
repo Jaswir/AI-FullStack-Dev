@@ -1,0 +1,86 @@
+
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    background-color: #5C4B99;
+    color: white;
+    padding: 30px;
+    height: 100%;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.header {
+    text-align: right;
+}
+
+.contact-btn {
+    background-color: #FF6B6B;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.main-content h1 {
+    font-size: 2.5em;
+}
+
+.subheading {
+    font-size: 1em;
+    margin-top: 10px;
+}
+
+.signup-section {
+    margin-top: 20px;
+}
+
+.signup-section input {
+    padding: 10px;
+    margin-right: 10px;
+    border: none;
+}
+
+.signup-btn {
+    background-color: #FF6B6B;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.customer-rating {
+    margin-top: 30px;
+    font-size: 0.8em;
+}
+
+.rating {
+    color: #FFD93D;
+    margin-top: 5px;
+}
+
+.hero-image {
+    background-color: #FF6B6B;
+    padding: 20px;
+    position: absolute;
+    right: 30px;
+    top: 100px;
+    width: 200px;
+    text-align: center;
+    transform: rotate(-10deg);
+}
+
+.hero-image p {
+    font-size: 1.2em;
+    margin: 0;
+}
+
+.hero-image span {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.8em;
+}
