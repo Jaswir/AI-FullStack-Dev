@@ -105,8 +105,9 @@ def replace_img_srcs(html_str):
     return modified_html
 
 def cleanseImages():
-    for filename in os.listdir('./static'):
-        os.remove(f'./static/{filename}')
+    if os.path.exists('./static'):
+        for filename in os.listdir('./static'):
+            os.remove(f'./static/{filename}')
 
 
 # html_example = """<!DOCTYPE html>
