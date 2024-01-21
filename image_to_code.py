@@ -21,12 +21,7 @@ RESET = "\033[0m"  # Reset color to default
 # Extracts the part between ```html and ``` from raw chat gpt response
 def extractHTMLFromResponse(rawHTMLCSS):
     if "```html" not in rawHTMLCSS:
-        return """
-        <!DOCTYPE html>
-        <html>
-        <p>Oops something went wrong with code generation, please try again!</p>
-        </html>
-    """
+        return getHTMLCode()
 
     html_without_bullshit_above = rawHTMLCSS.split("<!DOCTYPE html>")[1]
     html = html_without_bullshit_above.split("</html>")[0]
@@ -37,7 +32,7 @@ def extractHTMLFromResponse(rawHTMLCSS):
 # Extracts the part between ```css and ``` from raw chat gpt response
 def extractCSSFromResponse(rawHTMLCSS):
     if "```css" not in rawHTMLCSS:
-        return ""
+        return getCSSCode()
 
     css_without_bullshit_above = rawHTMLCSS.split("```css")[1]
     css = css_without_bullshit_above.split("```")[0]
@@ -123,6 +118,24 @@ def getCode():
     return html_plus_css
 
 
+def getHTMLCode():
+    file_path_html = "./my_website/index.html"
+    if os.path.exists(file_path_html):
+        with open(file_path_html, "r", encoding="utf8") as file:
+            html_string = file.read()
+        return html_string
+    return ""
+
+
+def getCSSCode():
+    file_path_css = "./my_website/styles.css"
+    if os.path.exists(file_path_css):
+        with open(file_path_css, "r", encoding="utf8") as file:
+            css_string = file.read()
+        return css_string
+    return ""
+
+
 # Helper function for displaying image from url in streamlit
 def get_image_from_url(image_url):
     r = requests.get(image_url)
@@ -177,8 +190,8 @@ def buildWebsite(image, option, llm):
 
             updateCodeFiles(data_filled_in)
 
-        # feedback = image_feedback.letGPT4EvaluateAndImproveItsWork()
-        # updateCodeFiles(feedback)
+        feedback = image_feedback.letGPT4EvaluateAndImproveItsWork()
+        updateCodeFiles(feedback)
 
     elif llm == "Gemini":
         geminiResponse = ai_secret_sauce.getGeminiVisionResponse(image, prompt, option)
