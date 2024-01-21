@@ -1,5 +1,4 @@
 .env*
 .env
 __pycache__
-.streamlit
-my_website
+.streamlit/secrets.toml
