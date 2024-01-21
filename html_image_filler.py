@@ -45,6 +45,9 @@ def generateImage(image_description: str, src):
     with open(f'./static/{src}', 'wb') as f:
         f.write(output_base64)
 
+    with open(f'./my_website/app/static/{src}', 'wb') as f:
+        f.write(output_base64)
+
     return 'image{index}.png'
 
 
