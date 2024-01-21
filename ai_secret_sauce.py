@@ -89,7 +89,7 @@ def chatbotImageFile(input, image_file):
     with open(file_path, "wb") as f:
         f.write(uploaded_file.getbuffer())
 
-    with open('./image_feedback/input_mock_website', "wb") as f:
+    with open('./image_feedback/input_mock_website.png', "wb") as f:
         f.write(uploaded_file.getbuffer())
 
 
