@@ -41,9 +41,15 @@ def generateImage(image_description: str, src):
         prompt.encode(), input_type="text", inference_params=inference_params_dall_e)
 
     output_base64 = model_prediction.outputs[0].data.image.base64
-
+    
     with open(f'./static/{src}', 'wb') as f:
         f.write(output_base64)
+
+ 
+    directory_name = "my_website/app"
+    if not os.path.exists(directory_name):
+        os.mkdir(directory_name)
+        os.mkdir(directory_name + '/static')
 
     with open(f'./my_website/app/static/{src}', 'wb') as f:
         f.write(output_base64)
@@ -133,3 +139,4 @@ def fillHTMLImages(html):
         html_file.write(html_with_images)
 
     print(html_with_images)
+
