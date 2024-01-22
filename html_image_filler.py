@@ -109,7 +109,8 @@ def cleanseImages():
         for filename in os.listdir('./static'):
             os.remove(f'./static/{filename}')
 
-
+    else :
+        os.mkdir('./static')
 # html_example = """<!DOCTYPE html>
 # <html lang="en">
 # <head>
