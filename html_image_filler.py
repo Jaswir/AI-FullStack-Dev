@@ -5,7 +5,7 @@ from clarifai.client.input import Inputs
 import os
 
 
-os.environ["CLARIFAI_PAT"] = 'f3ac13477d814ca79bf0a1d01739e251'
+# os.environ["CLARIFAI_PAT"] = 'f3ac13477d814ca79bf0a1d01739e251'
 
 info = InMemoryAccountInfo()
 b2_api = B2Api(info)
