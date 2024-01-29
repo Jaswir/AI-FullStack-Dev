@@ -184,12 +184,12 @@ def buildWebsite(image, option, llm):
 
         # print("Processing layer to fill in data:", has_table)
 
-        if True:
-            data_filled_in = ai_secret_sauce.getGeminiVisionResponse(
-                image, gemini_just_improve + response, option
-            )
+        # if True:
+        #     data_filled_in = ai_secret_sauce.getGeminiVisionResponse(
+        #         image, gemini_just_improve + response, option
+        #     )
 
-            updateCodeFiles(data_filled_in)
+        #     updateCodeFiles(data_filled_in)
 
         feedback = image_feedback.letGPT4EvaluateAndImproveItsWork()
         updateCodeFiles(feedback)
