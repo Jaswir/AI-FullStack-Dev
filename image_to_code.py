@@ -191,8 +191,8 @@ def buildWebsite(image, option, llm):
 
         #     updateCodeFiles(data_filled_in)
 
-        feedback = image_feedback.letGPT4EvaluateAndImproveItsWork()
-        updateCodeFiles(feedback)
+        # feedback = image_feedback.letGPT4EvaluateAndImproveItsWork()
+        # updateCodeFiles(feedback)
 
         html_image_filler.fillHTMLImages(getHTMLCode())
       
