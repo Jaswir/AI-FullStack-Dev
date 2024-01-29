@@ -3,9 +3,7 @@ import os
 import requests
 from io import BytesIO
 import re
-
 import ai_secret_sauce
-import image_feedback
 import html_image_filler
 
 
