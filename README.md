@@ -1,7 +1,7 @@
 # AI Full Stack Dev
 
 ## Demo
-https://github.com/Jaswir/AI-FullStack-Dev](https://snapweb-ai.streamlit.app/
+https://snapweb-ai.streamlit.app/
 
 ## Installing Modules
 pip install -r requirements.txt
